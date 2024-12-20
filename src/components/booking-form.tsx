@@ -28,7 +28,7 @@ export default function BookingForm() {
       await bookAppointment({ name, email, service, date, time })
       alert('Booking successful!')
       router.push('/')
-    } catch (error) {
+    } catch {
       alert('Booking failed. Please try again.')
     }
   }

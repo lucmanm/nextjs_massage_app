@@ -19,7 +19,7 @@ export default function ContactForm() {
       setName('')
       setEmail('')
       setMessage('')
-    } catch (error) {
+    } catch {
       alert('Failed to send message. Please try again.')
     }
   }
