@@ -37,7 +37,7 @@ export default function Header() {
     <header className="bg-primary text-primary-foreground">
       <nav className="container mx-auto px-4 py-6 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
-          Tranquil Touch
+          Lucmanm Touch
         </Link>
 
         {/* Desktop Menu */}
