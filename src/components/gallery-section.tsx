@@ -11,7 +11,8 @@ export default function GallerySection() {
         "Immerse yourself in the serene ambiance of Touch Massage, where rejuvenation is at the forefront. Discover our peaceful therapy environments today!",
       image:
         "https://plus.unsplash.com/premium_photo-1661274145140-5f04566233c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      price: 500,
+      price: "500",
+      duration: "60 min",
     },
     {
       title: "Tailored Wellness",
@@ -19,7 +20,8 @@ export default function GallerySection() {
         "Explore an array of specialized massage techniques that address your unique wellness needs, ensuring personalized therapy experiences.",
       image:
         "https://plus.unsplash.com/premium_photo-1661274145140-5f04566233c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      price: 500,
+      price: "500",
+      duration: "60 min",
     },
     {
       title: "Exquisite Comfort",
@@ -27,7 +29,8 @@ export default function GallerySection() {
         "Each image highlights the elegant environments and luxurious service quality. Experience an ambiance of true relaxation and rejuvenation.",
       image:
         "https://plus.unsplash.com/premium_photo-1661274145140-5f04566233c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      price: 500,
+      price: "500",
+      duration: "60 min",
     },
     {
       title: "Transformative Experiences",
@@ -35,7 +38,8 @@ export default function GallerySection() {
         "Visualize your journey toward wellness through our gallery, showcasing the transformative services that can elevate your health and happiness.",
       image:
         "https://plus.unsplash.com/premium_photo-1661274145140-5f04566233c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      price: 500,
+      price: "500",
+      duration: "60 min",
     },
     {
       title: "Experience Holistic Wellness",
@@ -43,7 +47,8 @@ export default function GallerySection() {
         "Embrace self-care at Touch Massage with our specialized treatments that cater to your well-being. Step into an environment that promotes relaxation and balance.",
       image:
         "https://plus.unsplash.com/premium_photo-1661274145140-5f04566233c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      price: 500,
+      price: "500",
+      duration: "60 min",
     },
     {
       title: "A Visual Journey",
@@ -51,7 +56,8 @@ export default function GallerySection() {
         "Marvel at the artistry of our spaces that are crafted to provide an exceptional experience, emphasizing the comfort and tranquility awaited within.",
       image:
         "https://plus.unsplash.com/premium_photo-1661274145140-5f04566233c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      price: 500,
+      price: "500",
+      duration: "60 min",
     },
     {
       title: "Achieve Inner Balance",
@@ -59,7 +65,8 @@ export default function GallerySection() {
         "Allow us to guide you on a path of rejuvenation. Our gallery exemplifies the peaceful environment that makes your visit to Touch Massage special and impactful.",
       image:
         "https://plus.unsplash.com/premium_photo-1661274145140-5f04566233c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      price: 500,
+      price: "500",
+      duration: "60 min",
     },
   ];
 
@@ -82,6 +89,7 @@ export default function GallerySection() {
             </div>
             <div className="flex flex-col flex-grow p-4">
               <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+              <p className="text-lg font-semibold text-gray-600 flex-grow ">{item.duration}</p>
               <p className="text-sm text-gray-600 flex-grow">{item.description}</p>
             </div>
             <div className="p-4">
