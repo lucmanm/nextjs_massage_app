@@ -11,7 +11,7 @@ export default function ConnectWithUs() {
     <Card className="max-w-5xl mx-auto border border-blue-700">
       <div className="grid md:grid-cols-[400px_1fr]">
         {/* Left Sidebar */}
-        <div className="bg-blue-700 text-white p-8 rounded-l-lg space-y-8">
+        <div className="bg-blue-700 text-white p-8 m-4 rounded-lg space-y-8">
           <div className="space-y-2">
             <h2 className="text-sm font-semibold tracking-wide">CONNECT WITH US</h2>
             <h1 className="text-3xl font-bold">Your Wellness Journey Awaits</h1>
