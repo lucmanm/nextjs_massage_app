@@ -34,7 +34,7 @@ export default function Header() {
   const closeSheet = () => setIsOpen(false);
 
   return (
-    <header className="bg-primary text-primary-foreground">
+    <header className="text-primar">
       <nav className="container mx-auto px-4 py-6 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
           Lucmanm Touch
