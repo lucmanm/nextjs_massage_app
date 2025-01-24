@@ -70,7 +70,7 @@ export default function GallerySection() {
         {galleryItems.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col h-full items-stretch bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow hover:cursor-pointer"
+            className="flex flex-col h-full items-stretch bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow hover:cursor-pointer border border-blue-200"
           >
             <div className="relative w-full h-48 md:h-56">
               <Image src={item.image} alt={item.title} layout="fill" objectFit="cover" className="rounded-t-lg" />
