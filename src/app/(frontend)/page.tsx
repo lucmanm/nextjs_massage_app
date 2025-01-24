@@ -1,15 +1,21 @@
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
+import ConnectWithUs from "@/components/connect-with-us";
+import FeaturesSection from "@/components/features-section";
+import GallerySection from "@/components/gallery-section";
+import HeroSection from "@/components/hero-section";
+import Testimonials from "@/components/testimonials";
 
 export default function Home() {
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-6">Welcome to LucmanmTouch Massage</h1>
-      <p className="mb-6">Experience relaxation and rejuvenation with our professional massage services.</p>
-      <Button asChild size="lg">
-        <Link href="/book">Book Your Massage Now</Link>
-      </Button>
+    <div>
+      <div className="container mx-auto py-8 space-y-8 max-sm:px-2">
+        <HeroSection />
+        <FeaturesSection />
+        <GallerySection />
+      </div>
+      <div className="py-16 px-4 bg-gradient-to-b from-blue-100 to-blue-50 space-y-8">
+        <Testimonials />
+        <ConnectWithUs />
+      </div>
     </div>
-  )
+  );
 }
-
