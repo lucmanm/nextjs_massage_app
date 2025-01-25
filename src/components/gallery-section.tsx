@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "./ui/button";
-import { ShoppingBag } from "lucide-react";
+import { Clock, ShoppingBag } from "lucide-react";
 
 export default function GallerySection() {
   const galleryItems = [
@@ -89,7 +89,11 @@ export default function GallerySection() {
             </div>
             <div className="flex flex-col flex-grow p-4">
               <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-              <p className="text-lg font-semibold text-blue-600 flex-grow ">{item.duration}</p>
+              {/* Time */}
+              <div className="flex items-center mb-2 space-x-2">
+                <Clock className="h-6 w-6 text-blue-600" />
+                <p className="text-lg font-semibold text-blue-600 flex-grow ">{item.duration}</p>
+              </div>
               <p className="text-sm text-gray-600 flex-grow">{item.description}</p>
             </div>
             <div className="p-4">
