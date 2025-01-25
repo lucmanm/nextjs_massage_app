@@ -45,3 +45,36 @@ export const menuData = [
     mobileView: true,
   },
 ];
+
+export interface CartItem {
+  id: string
+  name: string
+  price: number
+  quantity: number
+  image: string
+}
+
+export const cartItems: CartItem[] = [
+  {
+    id: "1",
+    name: "Wireless Earbuds",
+    price: 79.99,
+    quantity: 1,
+    image: "/placeholder.svg?height=100&width=100",
+  },
+  {
+    id: "2",
+    name: "Smart Watch",
+    price: 199.99,
+    quantity: 1,
+    image: "/placeholder.svg?height=100&width=100",
+  },
+  {
+    id: "3",
+    name: "Bluetooth Speaker",
+    price: 59.99,
+    quantity: 2,
+    image: "/placeholder.svg?height=100&width=100",
+  },
+]
+

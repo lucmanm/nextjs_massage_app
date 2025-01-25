@@ -8,7 +8,7 @@ const menuItems = [
   { icon: Home, label: "Home", href: "/" },
   { icon: BedDouble, label: "Service", href: "/services" },
   { icon: ShoppingCart, label: "Cart", href: "/cart" },
-  { icon: User, label: "Account", href: "/account" },
+  { icon: User, label: "Account", href: "/login" },
 ];
 
 export function BottomNav() {
