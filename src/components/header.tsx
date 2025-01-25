@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import MobileSheetMenu from "./mb-ui/mb-sheet-menu";
 
-export const menuData = [
+const menuData = [
   {
     href: "/",
     title: "Home",
@@ -28,7 +28,7 @@ export default function Header() {
     <header className="text-primary-900 bg-primary-100 shadow-md">
       <nav className="container mx-auto px-4 py-6 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
-          Lucmanm Touch
+          Touch Massage
         </Link>
 
         {/* Desktop Menu */}
@@ -50,7 +50,6 @@ export default function Header() {
             )
           )}
         </div>
-
         {/* Mobile Menu */}
         <MobileSheetMenu/>
       </nav>
