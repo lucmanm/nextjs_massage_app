@@ -13,7 +13,7 @@ export default function AccountPage() {
     <section className="p-4 bg-gray-50 min-h-screen">
       <div className="max-w-4xl mx-auto">
         {/* Content */}
-        <div className="mt-8">
+        <div className="mb-8">
           <h1 className="text-2xl font-bold text-gray-900">Account Page</h1>
           <p className="mt-2 text-gray-600">This is your account page. Manage your profile, settings, and more.</p>
         </div>

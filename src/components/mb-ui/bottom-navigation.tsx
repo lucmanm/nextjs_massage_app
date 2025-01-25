@@ -1,13 +1,13 @@
 "use client";
 
-import { BedDouble, Home, Mail, User } from "lucide-react";
+import { BedDouble, Home, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const menuItems = [
   { icon: Home, label: "Home", href: "/" },
   { icon: BedDouble, label: "Service", href: "/services" },
-  { icon: Mail, label: "Contact", href: "/contact" },
+  { icon: ShoppingCart, label: "cart", href: "/cart" },
   { icon: User, label: "Account", href: "/account" },
 ];
 
