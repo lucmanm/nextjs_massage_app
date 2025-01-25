@@ -1,10 +1,10 @@
+import { mobileMenuData } from "@/constant/data";
 import { useMenuStore } from "@/hook/useMenuStore";
 import { Menu } from "lucide-react"; // Importing the login icon
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
-import { menuData } from "@/constant/data";
 
 export default function MobileSheetMenu() {
   const pathname = usePathname();
@@ -23,7 +23,7 @@ export default function MobileSheetMenu() {
         <div>
           <SheetTitle className="hidden">Menu</SheetTitle>
           <nav className="flex flex-col space-y-2 mt-8 px-4">
-            {menuData.map((item) => (
+            {mobileMenuData.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}

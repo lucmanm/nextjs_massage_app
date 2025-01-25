@@ -3,25 +3,8 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import MobileSheetMenu from "./mb-ui/mb-sheet-menu";
+import { menuData } from "@/constant/data";
 
-const menuData = [
-  {
-    href: "/",
-    title: "Home",
-  },
-  {
-    href: "/services",
-    title: "Services",
-  },
-  {
-    href: "/contact",
-    title: "Contact",
-  },
-  {
-    href: "/book",
-    title: "Book Now",
-  },
-];
 
 export default function Header() {
   return (

@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { menuData } from "@/constant/data";
+import { authMenuData } from "@/constant/data";
 import Image from "next/image";
 
 export default function AccountPage() {
@@ -43,7 +43,7 @@ export default function AccountPage() {
         {/* Menu */}
 
         <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
-          {menuData.map((item) => (
+          {authMenuData.map((item) => (
             <a
               key={item.href}
               href={item.href}
