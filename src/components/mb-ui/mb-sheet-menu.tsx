@@ -1,4 +1,4 @@
-import { mobileMenuData } from "@/constant/data";
+import { menuData } from "@/constant/data";
 import { useMenuStore } from "@/hook/useMenuStore";
 import { Menu } from "lucide-react"; // Importing the login icon
 import Link from "next/link";
@@ -23,21 +23,24 @@ export default function MobileSheetMenu() {
         <div>
           <SheetTitle className="hidden">Menu</SheetTitle>
           <nav className="flex flex-col space-y-2 mt-8 px-4">
-            {mobileMenuData.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`${
-                  pathname === item.href
-                    ? "bg-slate-950 text-slate-100"
-                    : "hover:bg-blue-600 rounded-sm hover:text-slate-100"
-                } text-lg py-1 px-4 rounded-sm items-center`}
-                onClick={closeMenu}
-              >
-                <item.icon className="h-6 w-6 inline-block mr-2" />
-                {item.title}
-              </Link>
-            ))}
+            {menuData.map(
+              (item) =>
+                item.mobileView === true && (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`${
+                      pathname === item.href
+                        ? "bg-slate-950 text-slate-100"
+                        : "hover:bg-blue-600 rounded-sm hover:text-slate-100"
+                    } text-lg py-1 px-4 rounded-sm items-center`}
+                    onClick={closeMenu}
+                  >
+                    <item.icon className="h-5 w-5 inline-block mr-2" />
+                    {item.title}
+                  </Link>
+                )
+            )}
           </nav>
         </div>
       </SheetContent>
