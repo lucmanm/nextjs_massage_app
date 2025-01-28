@@ -1,7 +1,7 @@
 import ConnectWithUs from "@/components/connect-with-us";
 import FeaturesSection from "@/components/features-section";
 import GallerySection from "@/components/gallery-section";
-import HeroSection from "@/components/hero-section";
+import HeroSection from "@/app/(backend)/admin/_components/hero-section";
 import Testimonials from "@/components/testimonials";
 
 export default function Home() {
