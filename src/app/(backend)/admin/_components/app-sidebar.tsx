@@ -1,9 +1,7 @@
 "use client"
 
-import * as React from "react"
 import {
   AudioWaveform,
-  BookOpen,
   Bot,
   Command,
   Frame,
@@ -11,8 +9,9 @@ import {
   Map,
   PieChart,
   Settings2,
-  SquareTerminal,
+  SquareTerminal
 } from "lucide-react"
+import * as React from "react"
 
 
 import {
@@ -22,10 +21,10 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { TeamSwitcher } from "./team-switcher"
 import { NavMain } from "./nav-main"
 import { NavProjects } from "./nav-projects"
 import { NavUser } from "./nav-user"
+import { TeamSwitcher } from "./team-switcher"
 
 // This is sample data.
 const data = {
@@ -54,7 +53,7 @@ const data = {
   navMain: [
     {
       title: "Playground",
-      url: "#",
+      url: "/dashboard",
       icon: SquareTerminal,
       isActive: true,
       items: [
@@ -73,47 +72,21 @@ const data = {
       ],
     },
     {
-      title: "Models",
+      title: "Products",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "Products List",
+          url: "/admin/dashboard",
         },
         {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
+          title: "Create Product",
+          url: "/admin/create-product",
         },
       ],
     },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
+
     {
       title: "Settings",
       url: "#",

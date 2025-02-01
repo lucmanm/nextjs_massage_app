@@ -3,7 +3,7 @@ import ProductForm from './product-form'
 
 const Page = () => {
   return (
-    <div className='max-w-lg'>
+    <div className='lg:max-w-lg'>
       <ProductForm/>
     </div>
   )
