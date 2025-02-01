@@ -1,8 +1,11 @@
 import NextAuth from "next-auth"
+import { PrismaAdapter } from "@auth/prisma-adapter"
 import Credentials from "next-auth/providers/credentials"
+import { prisma } from "./lib/db"
 // Your own logic for dealing with plaintext password strings; be careful!
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  adapter: PrismaAdapter(prisma),
   providers: [
     Credentials({
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.

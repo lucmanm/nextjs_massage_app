@@ -1,9 +1,9 @@
 import { GalleryVerticalEnd } from "lucide-react";
 
 import { LoginForm } from "@/app/(backend)/sign-in/login-form";
-import Image from "next/image";
-import { imagesPlaceHolder } from "@/constant/data";
 import { auth } from "@/auth";
+import { imagesPlaceHolder } from "@/constant/data";
+import Image from "next/image";
 import { redirect } from "next/navigation";
 
 export default async function LoginPage() {
