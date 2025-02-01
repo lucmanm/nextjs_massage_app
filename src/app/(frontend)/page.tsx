@@ -1,14 +1,14 @@
 import ConnectWithUs from "@/components/connect-with-us";
 import FeaturesSection from "@/components/features-section";
 import GallerySection from "@/components/gallery-section";
-import HeroSection from "@/app/(backend)/admin/_components/hero-section";
 import Testimonials from "@/components/testimonials";
+import SwiperSlider from "@/app/(frontend)/wide-slider";
 
 export default function Home() {
   return (
     <div>
+        <SwiperSlider className="py-4"/>
       <div className="container mx-auto py-8 space-y-8 max-sm:px-2">
-        <HeroSection />
         <FeaturesSection />
         <GallerySection />
       </div>
