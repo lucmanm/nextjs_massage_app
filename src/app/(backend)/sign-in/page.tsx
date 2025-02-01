@@ -3,8 +3,12 @@ import { GalleryVerticalEnd } from "lucide-react";
 import { LoginForm } from "@/app/(backend)/sign-in/login-form";
 import Image from "next/image";
 import { imagesPlaceHolder } from "@/constant/data";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await auth();
+  if (session) redirect("/admin/dashboard");
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
@@ -23,7 +27,7 @@ export default function LoginPage() {
         </div>
       </div>
       <div className="relative hidden bg-muted lg:block">
-        <Image fill src={imagesPlaceHolder} alt="image default"/>
+        <Image fill src={imagesPlaceHolder} alt="image default" />
       </div>
     </div>
   );
