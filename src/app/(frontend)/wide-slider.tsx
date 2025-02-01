@@ -16,7 +16,7 @@ const SwiperSlider = ({className}: {className?: string}) => {
   ];
 
   return (
-    <div className={cn("relative w-full px-0", className)}>
+    <div className={cn("relative w-full px-0 ", className)}>
       {/* Adds space on both sides */}
       <Swiper
         effect={"coverflow"}
@@ -34,15 +34,15 @@ const SwiperSlider = ({className}: {className?: string}) => {
         }}
         pagination={{ clickable: true }}
         modules={[EffectCoverflow, Pagination]}
-        className="w-full py-12"
+        className="w-full"
       >
         {images.map((image, index) => (
           <SwiperSlide
             key={index}
-            className="flex justify-center items-center bg-white rounded-lg shadow-lg"
+            className="flex justify-center items-center bg-white rounded-lg shadow-md my-12"
             style={{ maxWidth: "90%", minWidth: "300px" }} // Controls slide width
           >
-            <div className="w-full h-[420px] max-sm:h-52 relative flex justify-center items-center">
+            <div className="w-full h-[420px] max-sm:h-52 relative flex justify-center items-center ">
               <Image
                 src={image}
                 alt={`Slide ${index + 1}`}
