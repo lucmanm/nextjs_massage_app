@@ -7,10 +7,10 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { createUserAuth } from "./action";
 import { createUserSchema } from "@/lib/zod";
-
-
+import { toast } from "react-toastify";
+import { createUserAuth } from "../../../../actions/action";
+import { LoaderPinwheel } from "lucide-react";
 
 export function NewUserForm() {
   const form = useForm<z.infer<typeof createUserSchema>>({
@@ -22,8 +22,19 @@ export function NewUserForm() {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof createUserSchema>) => {
-    createUserAuth(data);
+  const onSubmit = async (data: z.infer<typeof createUserSchema>) => {
+    try {
+      const result = await createUserAuth(data);
+
+      if (result.status === 200) {
+        toast.success("User created successfully!");
+        form.reset();
+      } else {
+        toast.error(result.body?.error || "Something went wrong.");
+      }
+    } catch {
+      toast.error("Failed to create user. Please try again.");
+    }
   };
 
   return (
@@ -36,7 +47,7 @@ export function NewUserForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Username" {...field} />
               </FormControl>
               <FormDescription>This is your public display name.</FormDescription>
               <FormMessage />
@@ -71,7 +82,15 @@ export function NewUserForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={form.formState.isSubmitting}>
+          {form.formState.isSubmitting ? (
+            <>
+              <LoaderPinwheel className="animate-spin" /> Loading...
+            </>
+          ) : (
+            "Create User"
+          )}
+        </Button>
       </form>
     </Form>
   );

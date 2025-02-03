@@ -19,7 +19,7 @@ export async function createUserAuth(data: z.infer<typeof createUserSchema>) {
         });
 
         console.log(response);
-
+        return { response, status: 200 }
     } catch {
         return {
             status: 500,

@@ -4,6 +4,8 @@ import "../../globals.css";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./_components/app-sidebar";
 import { Separator } from "@/components/ui/separator";
+
+import { ToastContainer } from "react-toastify";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -61,6 +63,7 @@ export default function RootLayout({
             </SidebarInset>
           </SidebarProvider>
         </div>
+        <ToastContainer position="top-center"/>
       </body>
     </html>
   );
