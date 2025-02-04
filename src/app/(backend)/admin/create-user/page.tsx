@@ -1,12 +1,4 @@
-import React from "react";
 import { NewUserForm } from "./new-user-form";
 
-const Page = () => {
-  return (
-    <div>
-      <NewUserForm />
-    </div>
-  );
-};
-
+const Page = () => <NewUserForm />;
 export default Page;

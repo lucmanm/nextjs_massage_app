@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { createUserSchema } from "@/lib/zod";
+import { LoaderPinwheel } from "lucide-react";
 import { toast } from "react-toastify";
 import { createUserAuth } from "../../../../actions/action";
-import { LoaderPinwheel } from "lucide-react";
 
 export function NewUserForm() {
   const form = useForm<z.infer<typeof createUserSchema>>({
@@ -29,6 +29,7 @@ export function NewUserForm() {
       if (result.status === 200) {
         toast.success("User created successfully!");
         form.reset();
+
       } else {
         toast.error(result.body?.error || "Something went wrong.");
       }
