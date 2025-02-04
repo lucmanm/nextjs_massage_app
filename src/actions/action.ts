@@ -24,6 +24,7 @@ export async function createUserAuth(data: z.infer<typeof createUserSchema>) {
             data: {
                 name: data.name,
                 email: data.email,
+                password: hashedPassword
             }
         });
 
