@@ -7,7 +7,7 @@ import SwiperSlider from "@/app/(frontend)/wide-slider";
 export default function Home() {
   return (
     <div>
-        <SwiperSlider className="py-4"/>
+      <SwiperSlider className="py-4" />
       <div className="container mx-auto py-8 space-y-8 max-sm:px-2">
         <FeaturesSection />
         <GallerySection />
