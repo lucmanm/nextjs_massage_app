@@ -63,7 +63,7 @@ export default function RootLayout({
             </SidebarInset>
           </SidebarProvider>
         </div>
-        <ToastContainer position="top-center"/>
+        <ToastContainer position="top-center" />
       </body>
     </html>
   );
