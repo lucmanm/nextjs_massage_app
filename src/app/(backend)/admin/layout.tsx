@@ -13,8 +13,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Fragment } from "react";
 import { ToastContainer } from "react-toastify";
-
-
+import DisplayPpathname from "./_components/display-pathname";
 
 export default function BackendLayout({
   children,
@@ -38,7 +37,9 @@ export default function BackendLayout({
                     </BreadcrumbItem>
                     <BreadcrumbSeparator className="hidden md:block" />
                     <BreadcrumbItem>
-                      <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                      <BreadcrumbPage>
+                        <DisplayPpathname />
+                      </BreadcrumbPage>
                     </BreadcrumbItem>
                   </BreadcrumbList>
                 </Breadcrumb>
