@@ -93,8 +93,8 @@ const data = {
       icon: Settings2,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: "Create new User",
+          url: "/admin/create-user",
         },
         {
           title: "Team",

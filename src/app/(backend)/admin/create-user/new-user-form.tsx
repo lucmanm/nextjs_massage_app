@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { createUserSchema } from "@/lib/zod";
-import { LoaderPinwheel } from "lucide-react";
+import { LoaderPinwheel, Lock, Mail, Save, User } from "lucide-react";
 import { toast } from "react-toastify";
 import { createUserAuth } from "../../../../actions/action";
 
@@ -29,7 +29,6 @@ export function NewUserForm() {
       if (result.status === 200) {
         toast.success("User created successfully!");
         form.reset();
-
       } else {
         toast.error(result.body?.error || "Something went wrong.");
       }
@@ -47,9 +46,18 @@ export function NewUserForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="Username" {...field} />
-              </FormControl>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <User className="size-4 text-gray-500" /> {/* Replace User with your desired icon */}
+                </div>
+                <FormControl>
+                  <Input
+                    placeholder="Username"
+                    {...field}
+                    className="pl-10" // Add padding to the left to make space for the icon
+                  />
+                </FormControl>
+              </div>
               <FormDescription>This is your public display name.</FormDescription>
               <FormMessage />
             </FormItem>
@@ -61,9 +69,18 @@ export function NewUserForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="example@example.com" {...field} />
-              </FormControl>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Mail className="size-4 text-gray-500" />
+                </div>
+                <FormControl>
+                  <Input
+                    placeholder="example@example.com"
+                    {...field}
+                    className="pl-10" // Add padding to the left to make space for the icon
+                  />
+                </FormControl>
+              </div>
               <FormDescription>Please enter your email address.</FormDescription>
               <FormMessage />
             </FormItem>
@@ -75,9 +92,19 @@ export function NewUserForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input type="password" placeholder="Password" {...field} />
-              </FormControl>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Lock className="size-4 text-gray-500" /> {/* Replace Lock with your desired icon */}
+                </div>
+                <FormControl>
+                  <Input
+                    type="password"
+                    placeholder="Password"
+                    {...field}
+                    className="pl-10" // Add padding to the left to make space for the icon
+                  />
+                </FormControl>
+              </div>
               <FormDescription>Password must be at least 6 characters.</FormDescription>
               <FormMessage />
             </FormItem>
@@ -89,7 +116,9 @@ export function NewUserForm() {
               <LoaderPinwheel className="animate-spin" /> Loading...
             </>
           ) : (
-            "Create User"
+            <>
+              <Save /> Create User
+            </>
           )}
         </Button>
       </form>
