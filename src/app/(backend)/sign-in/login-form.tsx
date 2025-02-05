@@ -1,6 +1,7 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { loginSchema } from "@/lib/zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -56,7 +57,6 @@ export function AdminSignInForm() {
                   />
                 </FormControl>
               </div>
-              <FormDescription>This is your public display name.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -80,12 +80,11 @@ export function AdminSignInForm() {
                   />
                 </FormControl>
               </div>
-              <FormDescription>Password must be at least 6 characters.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={form.formState.isSubmitting}>
+        <Button type="submit" className="w-full font-medium" disabled={form.formState.isSubmitting}>
           {form.formState.isSubmitting ? (
             <>
               <LoaderPinwheel className="animate-spin" /> Loading...
