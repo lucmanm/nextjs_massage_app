@@ -1,25 +1,27 @@
-"use client"
-import { cn } from "@/lib/utils";
+"use client";
 import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { loginSchema } from "@/lib/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoaderPinwheel, Lock, Save, User } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-interface LoginFormInputs {
-  email: string;
-  password: string;
-}
-
-export function LoginForm({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"form">) {
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInputs>();
+export function AdminSignInForm() {
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = async (data: z.infer<typeof loginSchema>) => {
     const result = await signIn("credentials", {
       redirect: false,
       email: data.email,
@@ -34,52 +36,67 @@ export function LoginForm({
   };
 
   return (
-    <form className={cn("flex flex-col gap-6", className)} onSubmit={handleSubmit(onSubmit)} {...props}>
-      <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-2xl font-bold">Login to your account</h1>
-        <p className="text-balance text-sm text-muted-foreground">
-          Enter your email below to login to your account
-        </p>
-      </div>
-      <div className="grid gap-6">
-        <div className="grid gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            type="email"
-            placeholder="m@example.com"
-            {...register("email", { required: "Email is required" })}
-          />
-          {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
-        </div>
-        <div className="grid gap-2">
-          <div className="flex items-center">
-            <Label htmlFor="password">Password</Label>
-            <a
-              href="#"
-              className="ml-auto text-sm underline-offset-4 hover:underline"
-            >
-              Forgot your password?
-            </a>
-          </div>
-          <Input
-            id="password"
-            type="password"
-            placeholder="Password"
-            {...register("password", { required: "Password is required" })}
-          />
-          {errors.password && <span className="text-red-500 text-sm">{errors.password.message}</span>}
-        </div>
-        <Button type="submit" className="w-full">
-          Login
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-md">
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <User className="size-4 text-gray-500" /> {/* Replace User with your desired icon */}
+                </div>
+                <FormControl>
+                  <Input
+                    placeholder="Username"
+                    {...field}
+                    className="pl-10" // Add padding to the left to make space for the icon
+                  />
+                </FormControl>
+              </div>
+              <FormDescription>This is your public display name.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Password</FormLabel>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Lock className="size-4 text-gray-500" /> {/* Replace Lock with your desired icon */}
+                </div>
+                <FormControl>
+                  <Input
+                    type="password"
+                    placeholder="Password"
+                    {...field}
+                    className="pl-10" // Add padding to the left to make space for the icon
+                  />
+                </FormControl>
+              </div>
+              <FormDescription>Password must be at least 6 characters.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" disabled={form.formState.isSubmitting}>
+          {form.formState.isSubmitting ? (
+            <>
+              <LoaderPinwheel className="animate-spin" /> Loading...
+            </>
+          ) : (
+            <>
+              <Save /> Login
+            </>
+          )}
         </Button>
-      </div>
-      <div className="text-center text-sm">
-        Don&apos;t have an account?{" "}
-        <a href="#" className="underline underline-offset-4">
-          Sign up
-        </a>
-      </div>
-    </form>
+      </form>
+    </Form>
   );
 }

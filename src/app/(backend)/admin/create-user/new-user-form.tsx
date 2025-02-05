@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { createUserSchema } from "@/lib/zod";
 import { LoaderPinwheel, Lock, Mail, Save, User } from "lucide-react";
 import { toast } from "react-toastify";
-import { createUserAuth } from "../../../../actions/action";
+import { createUserAuth } from "./action";
 
 export function NewUserForm() {
   const form = useForm<z.infer<typeof createUserSchema>>({

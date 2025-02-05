@@ -1,6 +1,6 @@
 import { GalleryVerticalEnd } from "lucide-react";
 
-import { LoginForm } from "@/app/(backend)/sign-in/login-form";
+import { AdminSignInForm } from "@/app/(backend)/sign-in/login-form";
 import { auth } from "@/auth";
 import { imagesPlaceHolder } from "@/constant/data";
 import Image from "next/image";
@@ -23,7 +23,7 @@ export default async function LoginPage() {
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-xs">
-            <LoginForm />
+            <AdminSignInForm />
           </div>
         </div>
       </div>
