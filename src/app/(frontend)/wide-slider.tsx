@@ -10,9 +10,11 @@ import { cn } from "@/lib/utils";
 
 const SwiperSlider = ({className}: {className?: string}) => {
   const images = [
-    "https://res.cloudinary.com/dzdcszrob/image/upload/v1727087770/eshop/wmv4wxjldcokpaknltkv.png",
-    "https://res.cloudinary.com/dzdcszrob/image/upload/v1727087744/eshop/tuibmrw53hqymvhvmo6r.png",
-    "https://res.cloudinary.com/dzdcszrob/image/upload/v1727087721/eshop/xx62uahbhnp5hli9d1aa.png",
+    "https://api.deepai.org/job-view-file/89d1254c-34aa-47e1-9ddc-4f3a811a47f7/outputs/output.jpg",
+    "https://api.deepai.org/job-view-file/89d1254c-34aa-47e1-9ddc-4f3a811a47f7/outputs/output.jpg",
+    "https://api.deepai.org/job-view-file/89d1254c-34aa-47e1-9ddc-4f3a811a47f7/outputs/output.jpg",
+    "https://api.deepai.org/job-view-file/89d1254c-34aa-47e1-9ddc-4f3a811a47f7/outputs/output.jpg",
+    "https://api.deepai.org/job-view-file/89d1254c-34aa-47e1-9ddc-4f3a811a47f7/outputs/output.jpg",
   ];
 
   return (
@@ -42,7 +44,7 @@ const SwiperSlider = ({className}: {className?: string}) => {
             className="flex justify-center items-center bg-white rounded-lg shadow-md my-12"
             style={{ maxWidth: "90%", minWidth: "300px" }} // Controls slide width
           >
-            <div className="w-full h-[420px] max-sm:h-52 relative flex justify-center items-center ">
+            <div className="w-full h-[520px] max-sm:h-52 relative flex justify-center items-center ">
               <Image
                 src={image}
                 alt={`Slide ${index + 1}`}
