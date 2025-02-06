@@ -1,30 +1,23 @@
-"use client"
+"use client";
 
 import {
   AudioWaveform,
   Bot,
   Command,
-  Frame,
   GalleryVerticalEnd,
   Map,
-  PieChart,
   Settings2,
-  SquareTerminal
-} from "lucide-react"
-import * as React from "react"
+  ShieldPlusIcon,
+  SquareTerminal,
+  User
+} from "lucide-react";
+import * as React from "react";
 
-
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarRail,
-} from "@/components/ui/sidebar"
-import { NavMain } from "./nav-main"
-import { NavProjects } from "./nav-projects"
-import { NavUser } from "./nav-user"
-import { TeamSwitcher } from "./team-switcher"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar";
+import { NavMain } from "./nav-main";
+import { NavProjects } from "./nav-projects";
+import { NavUser } from "./nav-user";
+import { TeamSwitcher } from "./team-switcher";
 
 // This is sample data.
 const data = {
@@ -113,22 +106,22 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "Users",
       url: "#",
-      icon: Frame,
+      icon: User,
+    },
+    {
+      name: "Roles",
+      url: "#",
+      icon: ShieldPlusIcon,
     },
     {
       name: "Sales & Marketing",
       url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
       icon: Map,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -145,5 +138,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
