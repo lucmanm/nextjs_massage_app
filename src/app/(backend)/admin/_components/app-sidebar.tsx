@@ -5,11 +5,13 @@ import {
   Bot,
   Command,
   GalleryVerticalEnd,
+  List,
   Map,
+  PlusSquare,
   Settings2,
   ShieldPlusIcon,
   SquareTerminal,
-  User
+  User,
 } from "lucide-react";
 import * as React from "react";
 
@@ -104,21 +106,58 @@ const data = {
       ],
     },
   ],
-  projects: [
+  settings: [
     {
       name: "Users",
       url: "#",
       icon: User,
+      subControl: [
+        {
+          title: "Create",
+          url: "/admin/create-user",
+          icon: PlusSquare,
+        },
+        {
+          title: "List",
+          url: "/admin/dashboard",
+          icon: List,
+        },
+      ],
     },
     {
       name: "Roles",
-      url: "#",
+      url: "/admin/dashboard",
+      subControl: [
+        {
+          title: "Create",
+          url: "/admin/create-user",
+          icon: List,
+        },
+        {
+          title: "List",
+          url: "/admin/dashboard",
+          icon: PlusSquare,
+        },
+      ],
+
       icon: ShieldPlusIcon,
     },
     {
       name: "Sales & Marketing",
       url: "#",
       icon: Map,
+      subControl: [
+        {
+          title: "Create",
+          url: "/admin/create-user",
+          icon: List,
+        },
+        {
+          title: "List",
+          url: "/admin/dashboard",
+          icon: PlusSquare,
+        },
+      ],
     },
   ],
 };
@@ -131,7 +170,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavProjects settings={data.settings} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
