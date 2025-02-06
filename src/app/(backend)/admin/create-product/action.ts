@@ -2,7 +2,6 @@
 import { prisma } from "@/lib/db";
 import { z } from "zod";
 import { productFormSchema } from "./product-form";
-import logError from "@/lib/errorLogger";
 
 export async function createProduct(values: z.infer<typeof productFormSchema>) {
 
@@ -36,9 +35,7 @@ export async function createProduct(values: z.infer<typeof productFormSchema>) {
 
     return { status: 200, body: { message: "Product created successfully." } };
 
-  } catch (error) {
-
-    logError(error);
+  } catch {
 
     return {
       status: 500,
