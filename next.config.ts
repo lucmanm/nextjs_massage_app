@@ -28,6 +28,13 @@ const nextConfig: NextConfig = {
         pathname: '/**',
         search: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.deepai.org',
+        port: '',
+        pathname: '/**',
+        search: '',
+      },
     ],
   },
 }
