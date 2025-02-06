@@ -28,13 +28,9 @@ export async function createUserAuth(data: z.infer<typeof createUserSchema>) {
             }
         });
 
-        console.log(hashedPassword);
         return { response, status: 200 }
 
-    } catch (error) {
-
-        console.log("--------------------");
-        console.log("error creating user:", error);
+    } catch {
 
         return {
             status: 500,

@@ -1,9 +1,9 @@
 model Product {
     id          String   @id @default(cuid())
-    model       String?
-    brand       String?
-    price       Float? // Added price field
-    description String? // Added description field
+    title       String   @unique
+    description String   @unique // Added description field
+    price       Float // Added price field
+    salePrice   Float? // Added salePrice field
     images      Image[] // One-to-many relationship with Image
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt

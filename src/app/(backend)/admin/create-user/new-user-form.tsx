@@ -32,6 +32,7 @@ export function NewUserForm() {
       } else {
         toast.error(result.body?.error || "Something went wrong.");
       }
+
     } catch {
       toast.error("Failed to create user. Please try again.");
     }
