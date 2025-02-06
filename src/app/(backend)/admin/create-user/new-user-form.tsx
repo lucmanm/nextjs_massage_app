@@ -4,11 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "@/components/ui/button";
+import ButtonCustomized from "@/components/button-customized";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { createUserSchema } from "@/lib/zod";
-import { LoaderPinwheel, Lock, Mail, Save, User } from "lucide-react";
+import { Lock, Mail, User } from "lucide-react";
 import { toast } from "react-toastify";
 import { createUserAuth } from "./action";
 
@@ -32,7 +32,6 @@ export function NewUserForm() {
       } else {
         toast.error(result.body?.error || "Something went wrong.");
       }
-
     } catch {
       toast.error("Failed to create user. Please try again.");
     }
@@ -111,17 +110,7 @@ export function NewUserForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={form.formState.isSubmitting}>
-          {form.formState.isSubmitting ? (
-            <>
-              <LoaderPinwheel className="animate-spin" /> Loading...
-            </>
-          ) : (
-            <>
-              <Save /> Create User
-            </>
-          )}
-        </Button>
+        <ButtonCustomized formState={form.formState.isSubmitting} title="Create User" />
       </form>
     </Form>
   );

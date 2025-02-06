@@ -1,14 +1,15 @@
 "use client"; // Required for client-side interactivity
 
-import { Button } from "@/components/ui/button";
+import ImageUpload from "@/components/ImageUpload";
+import ButtonCustomized from "@/components/button-customized";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import * as z from "zod";
 import { createProduct } from "./action";
-import { toast } from "react-toastify";
 
 // Define the form schema using Zod
 export const productFormSchema = z.object({
@@ -35,7 +36,6 @@ export default function ProductForm() {
   async function onSubmit(values: z.infer<typeof productFormSchema>) {
     try {
       const result = await createProduct(values);
-
       if (result.status === 200) {
         toast.success("Product created successfully!");
         form.reset();
@@ -51,6 +51,7 @@ export default function ProductForm() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {/* Title Field */}
+        <ImageUpload />
         <FormField
           control={form.control}
           name="title"
@@ -126,7 +127,7 @@ export default function ProductForm() {
         />
 
         {/* Submit Button */}
-        <Button type="submit">Submit</Button>
+        <ButtonCustomized title="Create" formState={form.formState.isSubmitting} />
       </form>
     </Form>
   );
