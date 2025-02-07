@@ -4,10 +4,13 @@ import { cn } from "@/lib/utils";
 import { ConactUs } from "@prisma/client";
 import Link from "next/link";
 import { markEmailAsRead } from "../email.action";
+import { useRouter } from "next/navigation";
 
 export function EmailList({ data, selectedEmailId }: { data: ConactUs[]; selectedEmailId?: string }) {
+  const router = useRouter();
   const handleEmailClick = async (emailId: string) => {
     await markEmailAsRead(emailId);
+    router.refresh();
   };
 
   return (
