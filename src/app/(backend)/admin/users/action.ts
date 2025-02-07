@@ -5,7 +5,7 @@ import { createUserSchema } from "@/lib/zod";
 import bcrypt from 'bcrypt';
 import { z } from "zod";
 
-export async function createUserAuth(data: z.infer<typeof createUserSchema>) {
+export async function createUserRole(data: z.infer<typeof createUserSchema>) {
     try {
 
 
@@ -24,7 +24,8 @@ export async function createUserAuth(data: z.infer<typeof createUserSchema>) {
             data: {
                 name: data.name,
                 email: data.email,
-                password: hashedPassword
+                password: hashedPassword,
+                role: data.role
             }
         });
 

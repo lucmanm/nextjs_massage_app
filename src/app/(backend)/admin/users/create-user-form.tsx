@@ -7,10 +7,11 @@ import { z } from "zod";
 import ButtonCustomized from "@/components/button-customized";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { createUserSchema } from "@/lib/zod";
 import { Lock, Mail, Save, User } from "lucide-react";
 import { toast } from "react-toastify";
-import { createUserAuth } from "./action";
+import { createUserRole } from "./action";
 
 export function CreateUserForm() {
   const form = useForm<z.infer<typeof createUserSchema>>({
@@ -19,12 +20,13 @@ export function CreateUserForm() {
       name: "",
       email: "",
       password: "",
+      role: "SALESPERSON",
     },
   });
 
   const onSubmit = async (data: z.infer<typeof createUserSchema>) => {
     try {
-      const result = await createUserAuth(data);
+      const result = await createUserRole(data);
 
       if (result.status === 200) {
         toast.success("User created successfully!");
@@ -39,12 +41,12 @@ export function CreateUserForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-md">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-4 max-sm:grid-cols-1 gap-4 mt-4">
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="relative">
               <FormLabel>Username</FormLabel>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -67,7 +69,7 @@ export function CreateUserForm() {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="relative">
               <FormLabel>Email</FormLabel>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -90,7 +92,7 @@ export function CreateUserForm() {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="relative">
               <FormLabel>Password</FormLabel>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -110,7 +112,35 @@ export function CreateUserForm() {
             </FormItem>
           )}
         />
-        <ButtonCustomized icon={Save} formState={form.formState.isSubmitting} title="Create User" />
+        <FormField
+          control={form.control}
+          name="role"
+          render={({ field }) => (
+            <FormItem className="relative">
+              <FormLabel>Role</FormLabel>
+              <FormControl>
+                <Select>
+                  <SelectTrigger {...field}>
+                    <SelectValue placeholder="Select Role" />
+                  </SelectTrigger>
+                  <SelectContent defaultValue={form.getValues("role")} {...field}>
+                    <SelectItem value="ADMIN">Admin</SelectItem>
+                    <SelectItem value="EDITOR">Editor</SelectItem>
+                    <SelectItem value="SALESPERSON">Sales Person</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormDescription>Select the user role.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <ButtonCustomized
+          icon={Save}
+          formState={form.formState.isSubmitting}
+          title="Create User"
+          className="col-span-1"
+        />
       </form>
     </Form>
   );
