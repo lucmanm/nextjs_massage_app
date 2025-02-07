@@ -23,7 +23,7 @@ export async function contactUsSendMessage(values: z.infer<typeof contactFormSch
             return {
                 status: 429, // Too Many Requests
                 body: {
-                    message: "You can only send one message per hour. Please wait before sending another message.",
+                    message: "Already sent your message. Please try again later.",
                 },
             };
         }
