@@ -9,11 +9,9 @@ export default async function MessagesPage({
 }) {
   const data = await prisma.conactUs.findMany();
 
-  const selectedEmailId = searchParams.emailId as string | undefined;
+  const selectedEmailId = (await searchParams).emailId as string | undefined;
 
-  const selectedEmail = selectedEmailId
-    ? data.find((email) => email.id === selectedEmailId)
-    : null;
+  const selectedEmail = selectedEmailId ? data.find((email) => email.id === selectedEmailId) : null;
 
   return (
     <div className="flex h-screen bg-background">
