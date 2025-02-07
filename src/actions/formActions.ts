@@ -18,7 +18,6 @@ export async function contactUsSendMessage(values: z.infer<typeof contactFormSch
                 },
             },
         });
-
         if (recentMessage) {
             return {
                 status: 429, // Too Many Requests
@@ -36,6 +35,7 @@ export async function contactUsSendMessage(values: z.infer<typeof contactFormSch
                 email: values.email,
                 phoneNumber: values.phoneNumber,
                 message: values.message,
+                subject: values.subject,
             },
         });
 

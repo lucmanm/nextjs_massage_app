@@ -21,6 +21,7 @@ export const contactFormSchema = z.object({
   email: z.string().min(1, "Please enter your email"),
   phoneNumber: z.string().min(1, "Please enter your phone number"),
   message: z.string().min(1, "Please enter your message"),
+  subject: z.string().min(1, "Please enter your Subject"),
 });
 
 export default function ConnectWithUs() {
@@ -35,12 +36,14 @@ export default function ConnectWithUs() {
       email: "",
       phoneNumber: "",
       message: "",
+      subject: "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof contactFormSchema>) {
     try {
       const response = await contactUsSendMessage(values);
+
       if (response?.status === 201) {
         setAlert("Successfull", "Thank you for your message, we will get back to you soon.", "success");
         form.reset();
@@ -56,7 +59,7 @@ export default function ConnectWithUs() {
   }
 
   return (
-    <Card className="max-w-5xl mx-auto border border-blue-700 p-4">
+    <Card className=" mx-auto border border-blue-700 p-4">
       <div className="grid md:grid-cols-[400px_1fr]">
         {/* Left Sidebar */}
         <div className="bg-blue-700 text-white p-8 rounded-lg space-y-8">
@@ -160,7 +163,20 @@ export default function ConnectWithUs() {
                 </FormItem>
               )}
             />
-
+            {/* Subject Field */}
+            <FormField
+              control={form.control}
+              name="subject"
+              render={({ field }) => (
+                <FormItem className="col-span-2">
+                  <FormLabel>Subject</FormLabel>
+                  <FormControl>
+                    <Input type="tel" placeholder="Subject" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             {/* Message Field */}
             <FormField
               control={form.control}
