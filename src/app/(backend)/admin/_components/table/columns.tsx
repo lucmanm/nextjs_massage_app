@@ -20,7 +20,7 @@ export type ProductWithoutTimestamps = Omit<Product, "createdAt" | "updatedAt">;
 export const columns: ColumnDef<ProductWithoutTimestamps>[] = [
   {
     accessorKey: "image",
-    header: () => <div className="text-center">Price</div>,
+    header: () => <div className="text-center">Image</div>,
   },
   {
     accessorKey: "title",
@@ -45,7 +45,7 @@ export const columns: ColumnDef<ProductWithoutTimestamps>[] = [
     cell: ({ row }) => {
       const parsedAmount = parseFloat(row.getValue("salePrice"));
       const amount = FormatCurrency({ amount: parsedAmount });
-      return <div className="text-right font-medium">{amount}</div>;
+      return <div className="text-right font-medium">{isNaN(parsedAmount) ? "0.00" : amount}</div>;
     },
   },
   {

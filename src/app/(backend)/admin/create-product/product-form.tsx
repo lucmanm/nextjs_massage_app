@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import * as z from "zod";
 import { createProduct } from "./action";
 import { Save } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 // Define the form schema using Zod
 export const productFormSchema = z.object({
@@ -22,6 +23,7 @@ export const productFormSchema = z.object({
 });
 
 export default function ProductForm() {
+  const router = useRouter();
   // Initialize the form
   const form = useForm<z.infer<typeof productFormSchema>>({
     resolver: zodResolver(productFormSchema),
@@ -40,6 +42,7 @@ export default function ProductForm() {
       if (result.status === 200) {
         toast.success("Product created successfully!");
         form.reset();
+        router.push("/admin/products");
       } else {
         toast.error(result.body?.error || "Something went wrong.");
       }

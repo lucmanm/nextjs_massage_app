@@ -4,7 +4,7 @@ const Page = async () => {
 
 
   return (
-    <div className="lg:max-w-lg">
+    <div className="lg:max-w-lg p-4">
       <ProductForm />
     </div>
   );
