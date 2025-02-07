@@ -3,6 +3,7 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/s
 import "../../globals.css";
 import { AppSidebar } from "./_components/app-sidebar";
 
+import { auth } from "@/auth";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,11 +12,9 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Fragment } from "react";
-import { ToastContainer } from "react-toastify";
-import DisplayPpathname from "./_components/display-pathname";
-import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import { Fragment } from "react";
+import DisplayPpathname from "./_components/display-pathname";
 
 export default async function BackendLayout({
   children,
@@ -55,7 +54,7 @@ export default async function BackendLayout({
           </SidebarInset>
         </SidebarProvider>
       </div>
-      <ToastContainer position="top-center" />
+
     </Fragment>
   );
 }
