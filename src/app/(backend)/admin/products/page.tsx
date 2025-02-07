@@ -33,7 +33,7 @@ async function getData(): Promise<ProductWithLiveStatus[]> {
   ];
 }
 
-export default async function DemoPage() {
+export default async function Page() {
   const data = await getData();
   // CONTINUE From Shadcn Pagination
   return (

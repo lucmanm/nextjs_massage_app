@@ -4,14 +4,7 @@ import "../../globals.css";
 import { AppSidebar } from "./_components/sidebar/app-sidebar";
 
 import { auth } from "@/auth";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { redirect } from "next/navigation";
 import { Fragment } from "react";
 import DisplayPpathname from "./_components/sidebar/display-pathname";
@@ -21,7 +14,6 @@ export default async function BackendLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const session = await auth();
   if (!session) redirect("/sign-in");
 
@@ -31,18 +23,15 @@ export default async function BackendLayout({
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
-            <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+            <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 border-b ">
               <div className="flex items-center gap-2 px-4">
                 <SidebarTrigger className="-ml-1" />
                 <Separator orientation="vertical" className="mr-2 h-4" />
                 <Breadcrumb>
                   <BreadcrumbList>
-                    <BreadcrumbItem className="hidden md:block">
-                      <BreadcrumbLink href="#">Building Your Application</BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator className="hidden md:block" />
                     <BreadcrumbItem>
                       <BreadcrumbPage>
+                        {/* Breadcrumb Data */}
                         <DisplayPpathname />
                       </BreadcrumbPage>
                     </BreadcrumbItem>
@@ -54,7 +43,6 @@ export default async function BackendLayout({
           </SidebarInset>
         </SidebarProvider>
       </div>
-
     </Fragment>
   );
 }
