@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import "../../globals.css";
-import { AppSidebar } from "./_components/app-sidebar";
+import { AppSidebar } from "./_components/sidebar/app-sidebar";
 
 import { auth } from "@/auth";
 import {
@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { redirect } from "next/navigation";
 import { Fragment } from "react";
-import DisplayPpathname from "./_components/display-pathname";
+import DisplayPpathname from "./_components/sidebar/display-pathname";
 
 export default async function BackendLayout({
   children,

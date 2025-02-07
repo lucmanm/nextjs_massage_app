@@ -10,7 +10,7 @@ import {
   PlusSquare,
   ShieldPlusIcon,
   SquareTerminal,
-  User2Icon
+  User2Icon,
 } from "lucide-react";
 import * as React from "react";
 
@@ -59,10 +59,6 @@ const data = {
           title: "Starred",
           url: "#",
         },
-        {
-          title: "Settings",
-          url: "#",
-        },
       ],
     },
     {
@@ -87,7 +83,7 @@ const data = {
       icon: User2Icon,
       items: [
         {
-          title: "Customers",
+          title: "Customers List",
           url: "/admin/dashboard",
         },
         {
