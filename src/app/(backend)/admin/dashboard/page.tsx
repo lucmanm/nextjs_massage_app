@@ -1,12 +1,16 @@
-export default async function Page() {
+import { CardStats } from "@/components/card";
+import { Users, UserPlus, DollarSign, Activity } from "lucide-react";
+
+export default function Dashboard() {
   return (
-    <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-      <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-        <div className="aspect-video rounded-xl bg-muted/50" />
-        <div className="aspect-video rounded-xl bg-muted/50" />
-        <div className="aspect-video rounded-xl bg-muted/50" />
+    <div className="min-h-screen">
+      {/* Top Cards */}
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <CardStats title="Visitors" value="1,234" icon={Activity} description="7% increase from last week" />
+        <CardStats title="New Customers" value="56" icon={UserPlus} description="12% increase from last month" />
+        <CardStats title="Sales" value="$9,876" icon={DollarSign} description="15% increase from last quarter" />
+        <CardStats title="Total Users" value="5,678" icon={Users} description="3% increase from last year" />
       </div>
-      <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
     </div>
   );
 }
