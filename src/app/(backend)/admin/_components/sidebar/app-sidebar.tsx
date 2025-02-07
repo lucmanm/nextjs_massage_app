@@ -96,11 +96,11 @@ const data = {
   settings: [
     {
       name: "Roles",
-      url: "/admin/dashboard",
+      url: "/admin/users",
       subControl: [
         {
           title: "List",
-          url: "/admin/dashboard",
+          url: "/admin/users",
           icon: List,
         },
         {

@@ -1,7 +1,7 @@
 import { columns, ProductWithoutTimestamps } from "../_components/table/columns";
 import { DataTable } from "../_components/table/data-table";
 
-type ProductWithLiveStatus = ProductWithoutTimestamps & { isLive: boolean };
+type ProductWithLiveStatus = ProductWithoutTimestamps;
 
 async function getData(): Promise<ProductWithLiveStatus[]> {
   // Fetch data from your API here.
@@ -12,7 +12,7 @@ async function getData(): Promise<ProductWithLiveStatus[]> {
       description: "Description of product 1",
       price: 1000,
       salePrice: 800,
-      isLive: true,
+      isActive: true,
     },
     {
       id: "f2b8c2d0",
@@ -20,7 +20,7 @@ async function getData(): Promise<ProductWithLiveStatus[]> {
       description: "Description of product 2",
       price: 2000,
       salePrice: 1800,
-      isLive: true,
+      isActive: true,
     },
     {
       id: "f2b8c2d1",
@@ -28,7 +28,7 @@ async function getData(): Promise<ProductWithLiveStatus[]> {
       description: "Description of product 3",
       price: 3000,
       salePrice: 2800,
-      isLive: true,
+      isActive: true,
     },
   ];
 }

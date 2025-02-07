@@ -12,7 +12,7 @@ import { Lock, Mail, Save, User } from "lucide-react";
 import { toast } from "react-toastify";
 import { createUserAuth } from "./action";
 
-export function NewUserForm() {
+export function CreateUserForm() {
   const form = useForm<z.infer<typeof createUserSchema>>({
     resolver: zodResolver(createUserSchema),
     defaultValues: {
