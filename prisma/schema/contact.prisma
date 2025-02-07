@@ -1,5 +1,7 @@
 model ConactUs {
     id          String   @id @default(cuid())
+    subject     String
+    isRead      Boolean
     firstName   String
     lastName    String
     email       String

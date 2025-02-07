@@ -17,7 +17,7 @@ async function getData(): Promise<User[]> {
 const Page = async () => {
   const data = await getData();
   return (
-    <div className="container">
+    <div className="container p-4">
       <DataTable columns={columns} data={data} />
       <CreateUserForm />
     </div>

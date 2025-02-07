@@ -1,7 +1,6 @@
-import { Search } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
+import { Search } from "lucide-react"
 
 interface Email {
   id: string
@@ -9,7 +8,6 @@ interface Email {
   preview: string
   sender: string
   timestamp: string
-  tags: string[]
   read: boolean
 }
 
@@ -21,7 +19,6 @@ const emails: Email[] = [
       "Hi, let's have a meeting tomorrow to discuss the project. I've been reviewing the project details and have some ideas I'd like to share. It's crucial that we...",
     sender: "William Smith",
     timestamp: "over 1 year ago",
-    tags: ["meeting", "work", "important"],
     read: true,
   },
   {
@@ -31,7 +28,6 @@ const emails: Email[] = [
       "Thank you for the project update. It looks great! I've gone through the report, and the progress is impressive. The team has done a fantastic job, and I...",
     sender: "Alice Smith",
     timestamp: "over 1 year ago",
-    tags: ["work", "important"],
     read: false,
   },
   {
@@ -41,7 +37,6 @@ const emails: Email[] = [
       "Any plans for the weekend? I was thinking of going hiking in the nearby mountains. It's been a while since we had some outdoor fun. If you're...",
     sender: "Bob Johnson",
     timestamp: "almost 2 years ago",
-    tags: ["personal"],
     read: true,
   },
 ]
@@ -74,13 +69,7 @@ export function EmailList() {
             </div>
             <h4 className="font-medium mb-1">{email.subject}</h4>
             <p className="text-sm text-muted-foreground line-clamp-2 mb-2">{email.preview}</p>
-            <div className="flex gap-2">
-              {email.tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="text-xs px-2 py-0.5 lowercase">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
+
           </div>
         ))}
       </div>
