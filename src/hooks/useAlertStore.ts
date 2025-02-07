@@ -6,7 +6,8 @@ interface AlertState {
     toggleMenu: () => void;
     title: string;
     description: string;
-    setAlert: (title: string, description: string) => void;
+    setAlert: (title: string, description: string, alertType: string) => void;
+    alertType?: "success" | "warning";
 }
 
 export const useAlertStore = create<AlertState>((set) => ({
@@ -15,5 +16,5 @@ export const useAlertStore = create<AlertState>((set) => ({
     toggleMenu: () => set((state) => ({ isOpen: !state.isOpen })),
     title: "",
     description: "",
-    setAlert: (title: string, description: string) => set({ title, description, isOpen: true }),
+    setAlert: (title: string, description: string, alertType: string) => set({ title, description, isOpen: true, alertType: alertType as "success" | "warning" }),
 }));

@@ -42,10 +42,10 @@ export default function ConnectWithUs() {
     try {
       const response = await contactUsSendMessage(values);
       if (response?.status === 201) {
-        setAlert("Successfull", "Thank you for your message, we will get back to you soon.");
+        setAlert("Successfull", "Thank you for your message, we will get back to you soon.", "success");
         form.reset();
       } else if (response?.status === 429) {
-        setAlert("Too many requests", "Please try again later, thank you.");
+        setAlert("Too many requests", "Please try again later, thank you.", "warning");
         form.reset();
       } else {
         toast.error("Something went wrong.");

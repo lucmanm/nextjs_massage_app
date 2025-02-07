@@ -6,17 +6,15 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useAlertStore } from "@/hooks/useAlertStore";
 
 export default function AlertMessage() {
-  const { title, description, isOpen, toggleMenu } = useAlertStore();
+  const { title, description, isOpen, toggleMenu, alertType } = useAlertStore();
   if (!isOpen) return null;
   return (
     <AlertDialog open={isOpen} onOpenChange={toggleMenu}>
-      <AlertDialogTrigger>Open</AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className={`${alertType === "success" ? "border-blue-600" : "border-red-600"}`}>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
           <AlertDialogDescription>{description}</AlertDialogDescription>
