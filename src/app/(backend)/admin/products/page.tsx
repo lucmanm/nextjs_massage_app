@@ -35,7 +35,7 @@ async function getData(): Promise<ProductWithLiveStatus[]> {
 
 export default async function DemoPage() {
   const data = await getData();
-
+  // CONTINUE From Shadcn Pagination
   return (
     <div className="container mx-auto py-10">
       <DataTable columns={columns} data={data} />

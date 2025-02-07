@@ -19,6 +19,10 @@ export type ProductWithoutTimestamps = Omit<Product, "createdAt" | "updatedAt">;
 
 export const columns: ColumnDef<ProductWithoutTimestamps>[] = [
   {
+    accessorKey: "image",
+    header: () => <div className="text-center">Price</div>,
+  },
+  {
     accessorKey: "title",
     header: "Title",
   },
@@ -56,10 +60,7 @@ export const columns: ColumnDef<ProductWithoutTimestamps>[] = [
       );
     },
   },
-  {
-    accessorKey: "image",
-    header: "Image",
-  },
+
   {
     accessorKey: "Action",
     cell: () => {
