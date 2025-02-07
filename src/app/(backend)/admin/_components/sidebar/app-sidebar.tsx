@@ -6,11 +6,11 @@ import {
   Command,
   GalleryVerticalEnd,
   List,
-  Map,
+  Mail,
   PlusSquare,
   ShieldPlusIcon,
   SquareTerminal,
-  User2Icon,
+  User2Icon
 } from "lucide-react";
 import * as React from "react";
 
@@ -113,21 +113,9 @@ const data = {
       icon: ShieldPlusIcon,
     },
     {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: Map,
-      subControl: [
-        {
-          title: "Create",
-          url: "/admin/create-user",
-          icon: PlusSquare,
-        },
-        {
-          title: "List",
-          url: "/admin/dashboard",
-          icon: List,
-        },
-      ],
+      name: "Message",
+      url: "/admin/messages",
+      icon: Mail,
     },
   ],
 };

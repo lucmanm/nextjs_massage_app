@@ -26,7 +26,7 @@ export function NavProjects({
     name: string;
     url: string;
     icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>;
-    subControl: {
+    subControl?: {
       title: string;
       url: string;
       icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>;
@@ -47,39 +47,35 @@ export function NavProjects({
                 <span>{item.name}</span>
               </a>
             </SidebarMenuButton>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuAction showOnHover>
-                  <MoreHorizontal />
-                  <span className="sr-only">More</span>
-                </SidebarMenuAction>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className="w-48 rounded-lg "
-                side={isMobile ? "bottom" : "right"}
-                align={isMobile ? "end" : "start"}
-              >
-                {item.subControl.map((subItem) => (
-                  <DropdownMenuItem key={subItem.title}>
-                    <Link
-                      href={subItem.url}
-                      className="flex items-center space-x-2 text-muted-foreground cursor-pointer"
-                    >
-                      <subItem.icon />
-                      <span>{subItem.title}</span>
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {item.subControl && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <SidebarMenuAction showOnHover>
+                    <MoreHorizontal />
+                    <span className="sr-only">More</span>
+                  </SidebarMenuAction>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  className="w-48 rounded-lg "
+                  side={isMobile ? "bottom" : "right"}
+                  align={isMobile ? "end" : "start"}
+                >
+                  {item.subControl.map((subItem) => (
+                    <DropdownMenuItem key={subItem.title}>
+                      <Link
+                        href={subItem.url}
+                        className="flex items-center space-x-2 text-muted-foreground cursor-pointer"
+                      >
+                        <subItem.icon />
+                        <span>{subItem.title}</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
           </SidebarMenuItem>
         ))}
-        {/* <SidebarMenuItem>
-          <SidebarMenuButton className="text-sidebar-foreground/70">
-            <MoreHorizontal className="text-sidebar-foreground/70" />
-            <span>More</span>
-          </SidebarMenuButton>
-        </SidebarMenuItem> */}
       </SidebarMenu>
     </SidebarGroup>
   );
