@@ -1,4 +1,8 @@
 import { NewUserForm } from "./new-user-form";
 
-const Page = () => <NewUserForm />;
+const Page = () => (
+  <div className="container">
+    <NewUserForm />
+  </div>
+);
 export default Page;

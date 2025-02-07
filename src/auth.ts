@@ -1,8 +1,9 @@
-import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
+import bcrypt from "bcryptjs"; // For password hashing and comparison
+import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { prisma } from "./lib/db";
-import bcrypt from "bcryptjs"; // For password hashing and comparison
+
 interface TCredentials {
   email: string;
   password: string;
@@ -11,6 +12,7 @@ interface TCredentials {
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
+
     Credentials({
       credentials: {
         email: { label: "Email", type: "email" },

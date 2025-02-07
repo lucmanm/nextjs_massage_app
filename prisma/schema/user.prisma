@@ -37,6 +37,7 @@ model User {
     password      String?
     accounts      Account[]
     sessions      Session[]
+    role          Role?     @default(USER)
 
     @@map("users")
 }
@@ -48,4 +49,11 @@ model VerificationToken {
 
     @@unique([identifier, token])
     @@map("verification_tokens")
+}
+
+enum Role {
+    USER
+    ADMIN
+    EDITOR
+    SALESPERSON
 }

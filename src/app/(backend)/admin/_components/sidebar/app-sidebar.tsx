@@ -99,14 +99,14 @@ const data = {
       url: "/admin/dashboard",
       subControl: [
         {
-          title: "Create",
-          url: "/admin/create-user",
-          icon: PlusSquare,
-        },
-        {
           title: "List",
           url: "/admin/dashboard",
           icon: List,
+        },
+        {
+          title: "Create",
+          url: "/admin/create-user",
+          icon: PlusSquare,
         },
       ],
 

@@ -5,6 +5,7 @@ model Product {
     price       Float // Added price field
     salePrice   Float? // Added salePrice field
     images      Image[] // One-to-many relationship with Image
+    isActive    Boolean  @default(true)
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
 
