@@ -8,10 +8,9 @@ import {
   List,
   Map,
   PlusSquare,
-  Settings2,
   ShieldPlusIcon,
   SquareTerminal,
-  User,
+  User2Icon
 } from "lucide-react";
 import * as React from "react";
 
@@ -83,47 +82,22 @@ const data = {
     },
 
     {
-      title: "Settings",
+      title: "Customers",
       url: "#",
-      icon: Settings2,
+      icon: User2Icon,
       items: [
+        {
+          title: "Customers",
+          url: "/admin/dashboard",
+        },
         {
           title: "Create new User",
           url: "/admin/create-user",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
         },
       ],
     },
   ],
   settings: [
-    {
-      name: "Users",
-      url: "#",
-      icon: User,
-      subControl: [
-        {
-          title: "Create",
-          url: "/admin/create-user",
-          icon: PlusSquare,
-        },
-        {
-          title: "List",
-          url: "/admin/dashboard",
-          icon: List,
-        },
-      ],
-    },
     {
       name: "Roles",
       url: "/admin/dashboard",
@@ -131,12 +105,12 @@ const data = {
         {
           title: "Create",
           url: "/admin/create-user",
-          icon: List,
+          icon: PlusSquare,
         },
         {
           title: "List",
           url: "/admin/dashboard",
-          icon: PlusSquare,
+          icon: List,
         },
       ],
 
@@ -150,12 +124,12 @@ const data = {
         {
           title: "Create",
           url: "/admin/create-user",
-          icon: List,
+          icon: PlusSquare,
         },
         {
           title: "List",
           url: "/admin/dashboard",
-          icon: PlusSquare,
+          icon: List,
         },
       ],
     },
