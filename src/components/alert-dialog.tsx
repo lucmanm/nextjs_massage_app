@@ -20,7 +20,7 @@ export default function AlertMessage() {
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogAction>Ok</AlertDialogAction>
+          <AlertDialogAction className="w-1/2">Ok</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
