@@ -13,6 +13,7 @@ import { z } from "zod";
 import AlertMessage from "./alert-dialog";
 import ButtonCustomized from "./button-customized";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
+import { cn } from "@/lib/utils";
 
 // Define the form schema using Zod
 export const contactFormSchema = z.object({
@@ -24,7 +25,7 @@ export const contactFormSchema = z.object({
   subject: z.string().min(1, "Please enter your Subject"),
 });
 
-export default function ConnectWithUs() {
+export default function ConnectWithUs({ className }: { className?: string }) {
   const { setAlert } = useAlertStore();
 
   // Initialize the form
@@ -59,7 +60,7 @@ export default function ConnectWithUs() {
   }
 
   return (
-    <Card className=" mx-auto border border-blue-700 p-4">
+    <Card className={cn("mx-auto border border-blue-700 p-4", className)}>
       <div className="grid md:grid-cols-[400px_1fr]">
         {/* Left Sidebar */}
         <div className="bg-blue-700 text-white p-8 rounded-lg space-y-8">
