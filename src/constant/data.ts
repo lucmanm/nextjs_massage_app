@@ -1,4 +1,4 @@
-import { BedDoubleIcon, BookCheck, Contact2Icon, Home, Mail } from "lucide-react";
+import { BedDoubleIcon, BookCheck, Contact2Icon, Home, Mail, UserCircle } from "lucide-react";
 
 
 export const authMenuData = [
@@ -34,7 +34,7 @@ export const menuData = [
   },
   {
     href: "/contact",
-    title: "Contact",
+    title: "Contact Us",
     icon: Mail,
     mobileView: true,
   },
@@ -43,6 +43,18 @@ export const menuData = [
     title: "Book Now",
     icon: BookCheck,
     mobileView: true,
+  },
+  {
+    href: "/login",
+    title: "Sign-In",
+    icon: UserCircle,
+    mobileView: false,
+  },
+  {
+    href: "/register",
+    title: "Register",
+    icon: Mail,
+    mobileView: false,
   },
 ];
 
