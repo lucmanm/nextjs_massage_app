@@ -4,11 +4,13 @@ import { contactUsSendMessage } from "@/actions/formActions";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useAlertStore } from "@/hooks/useAlertStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { z } from "zod";
+import AlertMessage from "./alert-dialog";
 import ButtonCustomized from "./button-customized";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 
@@ -22,6 +24,8 @@ export const contactFormSchema = z.object({
 });
 
 export default function ConnectWithUs() {
+  const { setAlert } = useAlertStore();
+
   // Initialize the form
   const form = useForm<z.infer<typeof contactFormSchema>>({
     resolver: zodResolver(contactFormSchema),
@@ -38,10 +42,10 @@ export default function ConnectWithUs() {
     try {
       const response = await contactUsSendMessage(values);
       if (response?.status === 201) {
-        toast.success(response.body.message);
+        setAlert("Successfull", "Thank you for your message, we will get back to you soon.");
         form.reset();
       } else if (response?.status === 429) {
-        toast.warning(response.body.message);
+        setAlert("Too many requests", "Please try again later, thank you.");
         form.reset();
       } else {
         toast.error("Something went wrong.");
@@ -177,6 +181,7 @@ export default function ConnectWithUs() {
           </form>
         </Form>
       </div>
+      <AlertMessage />
     </Card>
   );
 }
