@@ -8,7 +8,6 @@ import { z } from "zod";
 export async function createUserRole(data: z.infer<typeof createUserSchema>) {
     try {
 
-
         const existingUser = await prisma.user.findUnique({
             where: {
                 email: data.email
@@ -20,7 +19,7 @@ export async function createUserRole(data: z.infer<typeof createUserSchema>) {
         }
         const hashedPassword = await bcrypt.hash(data.password, 10); // 10 is the salt rounds
 
-        const response = await prisma.user.create({
+        await prisma.user.create({
             data: {
                 name: data.name,
                 email: data.email,
@@ -29,7 +28,11 @@ export async function createUserRole(data: z.infer<typeof createUserSchema>) {
             }
         });
 
-        return { response, status: 200 }
+        return {
+            status: 200, body: {
+                message: "User created successfully"
+            }
+        };
 
     } catch {
 

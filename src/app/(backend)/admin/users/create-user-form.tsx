@@ -12,8 +12,10 @@ import { createUserSchema } from "@/lib/zod";
 import { Lock, Mail, Save, User } from "lucide-react";
 import { toast } from "react-toastify";
 import { createUserRole } from "./action";
+import { useRouter } from "next/navigation";
 
 export function CreateUserForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof createUserSchema>>({
     resolver: zodResolver(createUserSchema),
     defaultValues: {
@@ -26,11 +28,14 @@ export function CreateUserForm() {
 
   const onSubmit = async (data: z.infer<typeof createUserSchema>) => {
     try {
+      console.log(data);
+
       const result = await createUserRole(data);
 
       if (result.status === 200) {
         toast.success("User created successfully!");
         form.reset();
+        router.refresh();
       } else {
         toast.error(result.body?.error || "Something went wrong.");
       }
@@ -119,11 +124,14 @@ export function CreateUserForm() {
             <FormItem className="relative">
               <FormLabel>Role</FormLabel>
               <FormControl>
-                <Select>
-                  <SelectTrigger {...field}>
+                <Select
+                  value={field.value} // Bind the value to the field value
+                  onValueChange={field.onChange} // Bind the onChange handler
+                >
+                  <SelectTrigger>
                     <SelectValue placeholder="Select Role" />
                   </SelectTrigger>
-                  <SelectContent defaultValue={form.getValues("role")} {...field}>
+                  <SelectContent>
                     <SelectItem value="ADMIN">Admin</SelectItem>
                     <SelectItem value="EDITOR">Editor</SelectItem>
                     <SelectItem value="SALESPERSON">Sales Person</SelectItem>
