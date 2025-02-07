@@ -8,7 +8,7 @@ import ButtonCustomized from "@/components/button-customized";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { createUserSchema } from "@/lib/zod";
-import { Lock, Mail, User } from "lucide-react";
+import { Lock, Mail, Save, User } from "lucide-react";
 import { toast } from "react-toastify";
 import { createUserAuth } from "./action";
 
@@ -110,7 +110,7 @@ export function NewUserForm() {
             </FormItem>
           )}
         />
-        <ButtonCustomized formState={form.formState.isSubmitting} title="Create User" />
+        <ButtonCustomized icon={Save} formState={form.formState.isSubmitting} title="Create User" />
       </form>
     </Form>
   );

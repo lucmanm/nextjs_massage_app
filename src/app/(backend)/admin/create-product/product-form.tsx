@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as z from "zod";
 import { createProduct } from "./action";
+import { Save } from "lucide-react";
 
 // Define the form schema using Zod
 export const productFormSchema = z.object({
@@ -127,7 +128,7 @@ export default function ProductForm() {
         />
 
         {/* Submit Button */}
-        <ButtonCustomized title="Create" formState={form.formState.isSubmitting} />
+        <ButtonCustomized icon={Save} title="Create" formState={form.formState.isSubmitting} />
       </form>
     </Form>
   );
