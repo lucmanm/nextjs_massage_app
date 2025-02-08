@@ -1,29 +1,30 @@
-import { cn } from "@/lib/utils";
+import GoogleIcon from "@/components/icons/Google";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 import { AppleIcon } from "lucide-react";
-import GoogleIcon from "@/components/icons/Google";
 
-export function LoginForm({ ...props }: React.ComponentPropsWithoutRef<"div">) {
+export function RegistrationForm({ ...props }: React.ComponentPropsWithoutRef<"div">) {
   return (
     <div className={cn("flex flex-col gap-6", props.className)} {...props}>
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">Welcome back</CardTitle>
-          <CardDescription>Login with your Apple or Google account</CardDescription>
+          <CardTitle className="text-xl">Create an Account</CardTitle>
+          <CardDescription>If you don&apos;t have an account, Create New</CardDescription>
         </CardHeader>
         <CardContent>
           <form>
             <div className="grid gap-6">
               <div className="flex flex-col gap-4">
                 <Button variant="outline" className="w-full">
-                  <AppleIcon />
+                  <AppleIcon className="size-10 fill-black" />
                   Login with Apple
                 </Button>
                 <Button variant="outline" className="w-full">
-                  <GoogleIcon />
+
+                  <GoogleIcon/>
                   Login with Google
                 </Button>
               </div>

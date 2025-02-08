@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import { RegistrationForm } from "./register-form";
 
 const Page = () => {
   return (
-    <div>
-      Register
-    </div>
-  )
-}
+    <section className="flex-1 flex items-center justify-center">
+      <RegistrationForm className="max-w-sm" />
+    </section>
+  );
+};
 
-export default Page
+export default Page;
