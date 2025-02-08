@@ -25,29 +25,25 @@ export default function Header() {
         <div className="hidden md:flex space-x-4 md:items-center">
           <NavigationMenu>
             <NavigationMenuList>
-              <NavigationMenuItem>
-                {menuData.map(
-                  (item) =>
-                    (item.title === "Sign-In" && (
-                      <Link key={item.title} href={item.href} legacyBehavior passHref>
-                        <NavigationMenuLink
-                          className={navigationMenuTriggerStyle({ className: "bg-blue-600 text-white " })}
-                        >
-                          {item.title}
-                        </NavigationMenuLink>
-                      </Link>
-                    )) || (
-                      <Link key={item.title} href={item.href} legacyBehavior passHref>
-                        <NavigationMenuLink
-                          className={navigationMenuTriggerStyle({
-                            className: pathname === item.href ? "bg-blue-600 text-white " : "",
-                          })}
-                        >
-                          {item.title}
-                        </NavigationMenuLink>
-                      </Link>
-                    )
-                )}
+              <NavigationMenuItem className="flex items-center capitalize">
+                {menuData.map((item) => (
+                  <Link key={item.title} href={item.href} legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle({
+                      className:
+                        "flex space-x-2 " +
+                        (pathname === item.href
+                        ? "bg-blue-600 text-white"
+                        : item.title === "Sign-In"
+                        ? "font-semibold"
+                        : ""),
+                      })}
+                    >
+                      {item.title === "Sign-In" && <item.icon />}
+                      <span>{item.title}</span>
+                    </NavigationMenuLink>
+                  </Link>
+                ))}
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>

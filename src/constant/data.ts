@@ -1,4 +1,4 @@
-import { BedDoubleIcon, BookCheck, Contact2Icon, Home, Mail, UserCircle } from "lucide-react";
+import { BedDoubleIcon, BookCheck, Contact2Icon, Home, LucideIcon, Mail, UserCircle } from "lucide-react";
 
 
 export const authMenuData = [
@@ -19,41 +19,49 @@ export const authMenuData = [
   },
 ];
 
-export const menuData = [
+
+type TMenuData = {
+  href: string;
+  title: "home" | "services" | "contact us" | "book now" | "register" | "Sign-In";
+  icon: LucideIcon
+  mobileView: boolean;
+}
+
+export const menuData: TMenuData[] = [
   {
     href: "/",
-    title: "Home",
+    title: "home",
     icon: Home,
     mobileView: false,
   },
   {
     href: "/services",
-    title: "Services",
+    title: "services",
     icon: BedDoubleIcon,
     mobileView: true,
   },
   {
     href: "/contact",
-    title: "Contact Us",
+    title: "contact us",
     icon: Mail,
     mobileView: true,
   },
   {
     href: "/book",
-    title: "Book Now",
+    title: "book now",
     icon: BookCheck,
     mobileView: true,
+  },
+  {
+    href: "/register",
+    title: "register",
+    icon: Mail,
+    mobileView: false,
   },
   {
     href: "/login",
     title: "Sign-In",
     icon: UserCircle,
-    mobileView: false,
-  },
-  {
-    href: "/register",
-    title: "Register",
-    icon: Mail,
     mobileView: false,
   },
 ];
