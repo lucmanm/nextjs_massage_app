@@ -32,9 +32,9 @@ export default function Header() {
                       className={navigationMenuTriggerStyle({
                         className:
                           pathname === item.href
-                            ? "bg-blue-600 text-white"
+                            ? "bg-blue-600 text-white space-x-2 "
                             : item.title === "Sign-In"
-                            ? "flex space-x-2 border border-blue-600"
+                            ? "flex space-x-2 "
                             : "",
                       })}
                     >
