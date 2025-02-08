@@ -3,7 +3,7 @@ import WebImageForm from "./web-image-form";
 
 const Page = () => {
   return (
-    <div>
+    <div className="p-4">
       <WebImageForm />
     </div>
   );

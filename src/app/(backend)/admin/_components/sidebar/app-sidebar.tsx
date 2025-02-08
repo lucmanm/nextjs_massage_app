@@ -120,7 +120,12 @@ const data = {
     },
     {
       name: "Store Information",
-      url: "/admin/store-information",
+      url: "/admin/web-information",
+      icon: InfoIcon,
+    },
+    {
+      name: "Web images",
+      url: "/admin/web-images",
       icon: InfoIcon,
     },
   ],
