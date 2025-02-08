@@ -30,13 +30,12 @@ export default function Header() {
                   <Link key={item.title} href={item.href} legacyBehavior passHref>
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle({
-                      className:
-                        "flex space-x-2 " +
-                        (pathname === item.href
-                        ? "bg-blue-600 text-white"
-                        : item.title === "Sign-In"
-                        ? "font-semibold"
-                        : ""),
+                        className:
+                          pathname === item.href
+                            ? "bg-blue-600 text-white"
+                            : item.title === "Sign-In"
+                            ? "flex space-x-2 border border-blue-600"
+                            : "",
                       })}
                     >
                       {item.title === "Sign-In" && <item.icon />}
