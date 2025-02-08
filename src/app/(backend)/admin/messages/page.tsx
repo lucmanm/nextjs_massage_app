@@ -5,7 +5,7 @@ import { EmailView } from "./ui/email-view";
 export default async function MessagesPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const data = await prisma.conactUs.findMany();
 
