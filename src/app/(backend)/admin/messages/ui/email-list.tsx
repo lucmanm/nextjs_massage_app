@@ -15,13 +15,13 @@ export function EmailList({ data, selectedEmailId }: { data: ConactUs[]; selecte
 
   return (
     <div className="flex flex-col h-full border-r">
-      <div className="p-4 border-b">
+      {/* <div className="p-4 border-b">
         <h1 className="text-xl font-semibold mb-4">Inbox</h1>
-        {/* <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2">
           <button className="px-3 py-1 text-sm bg-background hover:bg-accent rounded-full">All mail</button>
           <button className="px-3 py-1 text-sm hover:bg-accent rounded-full">Unread</button>
-        </div> */}
-      </div>
+        </div>
+      </div> */}
       <div className="overflow-auto flex-1">
         {data.map((email) => (
           <Link

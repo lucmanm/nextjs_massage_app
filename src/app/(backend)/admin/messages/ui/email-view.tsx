@@ -34,7 +34,7 @@ export function EmailView({ email }: { email?: ConactUs | null }) {
           <div className="flex-1">
             <div className="flex justify-between items-start">
               <div>
-                <h2 className="font-semibold text-lg">{`${email.firstName} ${email.lastName}`}</h2>
+                <h2 className="font-semibold text-lg">{`${email.firstName} ${email.lastName} (${email.phoneNumber})`}</h2>
                 <p className="text-sm text-muted-foreground">From: {email.email}</p>
               </div>
               <span className="text-sm text-muted-foreground">{email.createdAt.toLocaleDateString()}</span>
