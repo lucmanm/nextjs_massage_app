@@ -39,7 +39,7 @@ export default async function BackendLayout({
                 </Breadcrumb>
               </div>
             </header>
-            <main className="flex-grow">{children}</main>
+            <main className="flex-grow  flex bg-slate-100">{children}</main>
           </SidebarInset>
         </SidebarProvider>
       </div>

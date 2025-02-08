@@ -5,6 +5,7 @@ import {
   Bot,
   Command,
   GalleryVerticalEnd,
+  InfoIcon,
   List,
   Mail,
   PlusSquare,
@@ -116,6 +117,11 @@ const data = {
       name: "Message",
       url: "/admin/messages",
       icon: Mail,
+    },
+    {
+      name: "Store Information",
+      url: "/admin/store-information",
+      icon: InfoIcon,
     },
   ],
 };
