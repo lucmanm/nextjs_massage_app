@@ -14,7 +14,9 @@ export default async function BackendLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   const session = await auth();
+
   if (!session) redirect("/sign-in");
 
   return (

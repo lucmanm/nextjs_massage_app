@@ -1,10 +1,10 @@
 import { GalleryVerticalEnd } from "lucide-react";
 
-import { AdminSignInForm } from "@/app/(backend)/sign-in/login-form";
 import { auth } from "@/auth";
 import { imagesPlaceHolder } from "@/constant/data";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { AdminSignInForm } from "./login-form";
 
 export default async function LoginPage() {
   const session = await auth();
