@@ -8,13 +8,13 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage } from "@/co
 import { redirect } from "next/navigation";
 import { Fragment } from "react";
 import DisplayPpathname from "./_components/sidebar/display-pathname";
+import { UserNavMenu } from "./_components/user-nav-menu";
 
 export default async function BackendLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const session = await auth();
 
   if (!session) redirect("/sign-in");
@@ -25,7 +25,7 @@ export default async function BackendLayout({
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
-            <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 border-b ">
+            <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 border-b justify-between px-4">
               <div className="flex items-center gap-2 px-4">
                 <SidebarTrigger className="-ml-1" />
                 <Separator orientation="vertical" className="mr-2 h-4" />
@@ -40,6 +40,13 @@ export default async function BackendLayout({
                   </BreadcrumbList>
                 </Breadcrumb>
               </div>
+              <UserNavMenu
+                user={{
+                  name: "John Doe",
+                  email: "john@example.com",
+                  image: "/placeholder.svg?height=32&width=32",
+                }}
+              />
             </header>
             <main className="flex-grow  flex bg-slate-100">{children}</main>
           </SidebarInset>
