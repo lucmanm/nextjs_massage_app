@@ -55,7 +55,10 @@ export function UserNavMenu({ user }: UserNavMenuProps) {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="hover:cursor-pointer" onClick={async () => signOut({ redirectTo: "/sign-in" })}>
+        <DropdownMenuItem
+          className="hover:cursor-pointer"
+          onClick={async () => signOut({ redirectTo: "/admin/sign-in" })}
+        >
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
         </DropdownMenuItem>
