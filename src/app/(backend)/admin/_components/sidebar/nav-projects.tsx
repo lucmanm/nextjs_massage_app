@@ -18,34 +18,36 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { Role } from "@prisma/client";
 
-export function NavProjects({
-  settings,
-}: {
-  settings: {
-    name: string;
+type Setting = {
+  name: string;
+  url: string;
+  icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>;
+  subControl?: {
+    title: string;
     url: string;
     icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>;
-    subControl?: {
-      title: string;
-      url: string;
-      icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>;
-    }[];
   }[];
-}) {
+  role?: Role;
+};
+
+export function NavProjects({ settings, userRole }: { settings: Setting[], userRole: Role }) {
   const { isMobile } = useSidebar();
+
+  const filteredSettings = settings.filter(item => item.role === userRole);
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>Settings</SidebarGroupLabel>
       <SidebarMenu>
-        {settings.map((item) => (
+        {filteredSettings.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
-              <a href={item.url}>
+              <Link href={item.url}>
                 <item.icon />
                 <span>{item.name}</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
             {item.subControl && (
               <DropdownMenu>

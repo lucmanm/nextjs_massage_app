@@ -11,7 +11,7 @@ import {
   PlusSquare,
   ShieldPlusIcon,
   SquareTerminal,
-  User2Icon
+  User2Icon,
 } from "lucide-react";
 import * as React from "react";
 
@@ -20,6 +20,7 @@ import { NavMain } from "./nav-main";
 import { NavProjects } from "./nav-projects";
 import { NavUser } from "./nav-user";
 import { TeamSwitcher } from "./team-switcher";
+import { Role } from "@prisma/client";
 
 // This is sample data.
 const data = {
@@ -110,23 +111,26 @@ const data = {
           icon: PlusSquare,
         },
       ],
-
       icon: ShieldPlusIcon,
+      role: Role.ADMIN,
     },
     {
       name: "Message",
       url: "/admin/messages",
       icon: Mail,
+      role: Role.ADMIN,
     },
     {
       name: "Store Information",
       url: "/admin/web-information",
       icon: InfoIcon,
+      role: Role.ADMIN,
     },
     {
       name: "Web images",
       url: "/admin/web-images",
       icon: InfoIcon,
+      role: Role.ADMIN,
     },
   ],
 };
@@ -139,7 +143,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects settings={data.settings} />
+        <NavProjects settings={data.settings} userRole={Role.ADMIN} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
