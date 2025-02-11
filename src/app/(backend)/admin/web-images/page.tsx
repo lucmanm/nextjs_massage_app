@@ -67,11 +67,12 @@ async function Page() {
   // }
 
   return (
-    <div className="p-4 flex-1 h-full">
-      <Card>
-        <h2 className="text-xl font-bold mb-4">Add a New Image</h2>
-        <WebImageForm />
-        {/* <form action={create} className="bg-white border border-slate-200 dark:border-slate-500 rounded p-6 mb-6">
+    <div className="p-4 flex-1">
+      <Card className="flex-1 grow">
+        <h2 className="text-xl font-bold flex items-center py-2 pl-2">Web Images</h2>
+      </Card>
+      <WebImageForm />
+      {/* <form action={create} className="bg-white border border-slate-200 dark:border-slate-500 rounded p-6 mb-6">
           <p className="mb-6">
             <label htmlFor="image" className="block font-semibold text-sm mb-2">
               Select an Image to Upload
@@ -87,7 +88,7 @@ async function Page() {
           </p>
           <Button>Submit</Button>
         </form> */}
-        {/* <h2 className="text-xl font-bold mb-4">Images</h2>
+      {/* <h2 className="text-xl font-bold mb-4">Images</h2>
         <ul className="grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12">
           {sneakers.map((sneaker: CloudinaryResource) => {
             return (
@@ -129,7 +130,6 @@ async function Page() {
             .
           </p>
         </div> */}
-      </Card>
     </div>
   );
 }
