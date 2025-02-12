@@ -48,7 +48,7 @@ export default async function BackendLayout({
                 }}
               />
             </header>
-            <main className="flex-grow  flex bg-slate-100">{children}</main>
+            <main className="flex-grow  flex">{children}</main>
           </SidebarInset>
         </SidebarProvider>
       </div>
