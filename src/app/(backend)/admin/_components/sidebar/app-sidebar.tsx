@@ -74,7 +74,7 @@ const data = {
         },
         {
           title: "Create Product",
-          url: "/admin/create-product",
+          url: "/admin/products/create-product",
         },
       ],
     },
