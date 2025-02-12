@@ -2,6 +2,9 @@
   "name": "nextjs_massage_app",
   "version": "0.1.0",
   "private": true,
+  "prisma": {
+     "seed": "ts-node prisma/seed.ts"
+  },
   "scripts": {
     "postinstall": "prisma generate",
     "dev": "next dev --turbopack",
@@ -49,7 +52,7 @@
     "@eslint/eslintrc": "^3",
     "@types/bcrypt": "^5.0.2",
     "@types/bcryptjs": "^2.4.6",
-    "@types/node": "^20",
+    "@types/node": "^20.17.17",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

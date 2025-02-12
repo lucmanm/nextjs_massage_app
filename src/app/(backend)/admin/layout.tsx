@@ -17,7 +17,7 @@ export default async function BackendLayout({
 }>) {
   const session = await auth();
 
-  if (!session) redirect("/sign-in");
+  if (!session) redirect("/");
 
   return (
     <Fragment>
