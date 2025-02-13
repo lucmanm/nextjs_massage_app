@@ -4,7 +4,7 @@ const Page = async () => {
 
 
   return (
-    <div className="w-1/2 p-4">
+    <div className="p-4 flex-1">
       <ProductForm />
     </div>
   );
