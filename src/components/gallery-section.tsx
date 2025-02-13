@@ -2,73 +2,10 @@ import Image from "next/image";
 import React from "react";
 import { Button } from "./ui/button";
 import { Clock, ShoppingBag } from "lucide-react";
+import { galleryItems } from "@/constant/data";
 
 export default function GallerySection() {
-  const galleryItems = [
-    {
-      title: "Soothing Sanctuary",
-      description:
-        "Immerse yourself in the serene ambiance of Touch Massage, where rejuvenation is at the forefront. Discover our peaceful therapy environments today!",
-      image:
-        "https://res.cloudinary.com/dzdcszrob/image/upload/v1733872503/icons/qajzdl5t44y0uvtfuhmz.svg",
-      price: "500",
-      duration: "60 min",
-    },
-    {
-      title: "Tailored Wellness",
-      description:
-        "Explore an array of specialized massage techniques that address your unique wellness needs, ensuring personalized therapy experiences.",
-      image:
-        "https://res.cloudinary.com/dzdcszrob/image/upload/v1733872503/icons/qajzdl5t44y0uvtfuhmz.svg",
-      price: "500",
-      duration: "60 min",
-    },
-    {
-      title: "Exquisite Comfort",
-      description:
-        "Each image highlights the elegant environments and luxurious service quality. Experience an ambiance of true relaxation and rejuvenation.",
-      image:
-        "https://res.cloudinary.com/dzdcszrob/image/upload/v1733872503/icons/qajzdl5t44y0uvtfuhmz.svg",
-      price: "500",
-      duration: "60 min",
-    },
-    {
-      title: "Transformative Experiences",
-      description:
-        "Visualize your journey toward wellness through our gallery, showcasing the transformative services that can elevate your health and happiness.",
-      image:
-        "https://res.cloudinary.com/dzdcszrob/image/upload/v1733872503/icons/qajzdl5t44y0uvtfuhmz.svg",
-      price: "500",
-      duration: "60 min",
-    },
-    {
-      title: "Experience Holistic Wellness",
-      description:
-        "Embrace self-care at Touch Massage with our specialized treatments that cater to your well-being. Step into an environment that promotes relaxation and balance.",
-      image:
-        "https://res.cloudinary.com/dzdcszrob/image/upload/v1733872503/icons/qajzdl5t44y0uvtfuhmz.svg",
-      price: "500",
-      duration: "60 min",
-    },
-    {
-      title: "A Visual Journey",
-      description:
-        "Marvel at the artistry of our spaces that are crafted to provide an exceptional experience, emphasizing the comfort and tranquility awaited within.",
-      image:
-        "https://res.cloudinary.com/dzdcszrob/image/upload/v1733872503/icons/qajzdl5t44y0uvtfuhmz.svg",
-      price: "500",
-      duration: "60 min",
-    },
-    {
-      title: "Achieve Inner Balance",
-      description:
-        "Allow us to guide you on a path of rejuvenation. Our gallery exemplifies the peaceful environment that makes your visit to Touch Massage special and impactful.",
-      image:
-        "https://res.cloudinary.com/dzdcszrob/image/upload/v1733872503/icons/qajzdl5t44y0uvtfuhmz.svg",
-      price: "500",
-      duration: "60 min",
-    },
-  ];
+
 
   return (
     <section className="py-8 lg:py-16">
