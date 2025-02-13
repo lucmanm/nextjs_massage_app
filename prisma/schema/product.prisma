@@ -1,7 +1,7 @@
 model Product {
   id          String   @id @default(cuid())
   title       String   @unique
-  description String   @unique // Added description field
+  description String // Added description field
   duration    String
   price       Float // Added price field
   salePrice   Float? // Added salePrice field
