@@ -1,39 +1,39 @@
 model StoreCode {
-    id        String   @id @default(cuid())
-    code      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  id        String   @id @default(cuid())
+  code      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model StoreImages {
-    id        String   @id @default(cuid())
-    name      String
-    logoUrl   String?
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  id        String   @id @default(cuid())
+  name      String
+  logoUrl   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model SocialMedia {
-    id        String   @id @default(cuid())
-    name      String   @unique
-    imageUrl  String?
-    url       String?
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  id        String   @id @default(cuid())
+  name      String   @unique
+  imageUrl  String?
+  url       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model PaymentGateway {
-    id        String   @id @default(cuid())
-    name      String   @unique
-    imageUrl  String?
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  id        String   @id @default(cuid())
+  name      String   @unique
+  imageUrl  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model ShippingCompany {
-    id        String   @id @default(cuid())
-    name      String   @unique
-    imageUrl  String?
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  id        String   @id @default(cuid())
+  name      String   @unique
+  imageUrl  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

@@ -3,6 +3,8 @@ import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
+
+
 async function main() {
     // Seed data for StoreCode
     await prisma.storeCode.create({
@@ -51,6 +53,8 @@ async function main() {
         ],
     });
 }
+
+
 
 const hashedPassword = await bcrypt.hash("258963147", 10);
 

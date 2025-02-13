@@ -1,22 +1,23 @@
 model Product {
-    id          String   @id @default(cuid())
-    title       String   @unique
-    description String   @unique // Added description field
-    price       Float // Added price field
-    salePrice   Float? // Added salePrice field
-    images      Image[] // One-to-many relationship with Image
-    isActive    Boolean  @default(true)
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+  id          String   @id @default(cuid())
+  title       String   @unique
+  description String   @unique // Added description field
+  duration    String
+  price       Float // Added price field
+  salePrice   Float? // Added salePrice field
+  images      Image[] // One-to-many relationship with Image
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-    @@map("products")
+  @@map("products")
 }
 
 model Image {
-    id        String  @id @default(cuid())
-    url       String // URL or file path of the image
-    productId String // Foreign key to Product
-    product   Product @relation(fields: [productId], references: [id]) // Relation to Product
+  id        String  @id @default(cuid())
+  url       String // URL or file path of the image
+  productId String // Foreign key to Product
+  product   Product @relation(fields: [productId], references: [id]) // Relation to Product
 
-    @@map("images")
+  @@map("images")
 }

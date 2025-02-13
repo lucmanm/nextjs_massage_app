@@ -1,14 +1,14 @@
 model ConactUs {
-    id          String   @id @default(cuid())
-    subject     String
-    isRead      Boolean?  @default(false)
-    firstName   String
-    lastName    String
-    email       String
-    phoneNumber String
-    message     String
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+  id          String   @id @default(cuid())
+  subject     String
+  isRead      Boolean? @default(false)
+  firstName   String
+  lastName    String
+  email       String
+  phoneNumber String
+  message     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-    @@map("contact_us")
+  @@map("contact_us")
 }
