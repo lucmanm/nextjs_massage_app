@@ -22,17 +22,22 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as z from "zod";
+import { uploadImage } from "./action";
 
 // Define the form schema using Zod
 export const productFormSchema = z.object({
   title: z.string().min(1, "Title is required"),
   description: z.string().min(1, "Description is required"),
-  image: z.string().url("Invalid URL").optional(),
   price: z.string().min(1, "Price is required"),
   duration: z.string().min(1, "Duration is required"),
   salePrice: z.coerce.number().default(0.0),
   isActive: z.boolean().default(true),
+  image: z
+    .instanceof(File)
+    .refine((file) => file.size > 0, { message: 'Image is required' })
+    .refine((file) => file.type.startsWith('image/'), { message: 'Only image files are allowed' }),
 });
+
 
 export default function ProductForm() {
   const { toast: toaster } = useToast();
@@ -44,8 +49,7 @@ export default function ProductForm() {
       title: "A Visual Journey",
       description:
         "Marvel at the artistry of our spaces that are crafted to provide an exceptional experience, emphasizing the comfort and tranquility awaited within.",
-      image:
-        "https://res.cloudinary.com/dzdcszrob/image/upload/v1733872503/icons/qajzdl5t44y0uvtfuhmz.svg",
+      image: undefined,
       price: "500",
       duration: "60 min",
       salePrice: 0.0,
@@ -56,7 +60,7 @@ export default function ProductForm() {
   // Handle form submission
   async function onSubmit(values: z.infer<typeof productFormSchema>) {
     try {
-      console.log(values);
+      uploadImage(values)
       toaster({
         title: "You submitted the following values:",
         description: (
@@ -86,7 +90,7 @@ export default function ProductForm() {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        form.setValue("image", reader.result as string);
+        form.setValue("image", file);
       };
       reader.readAsDataURL(file);
     }
@@ -222,7 +226,7 @@ export default function ProductForm() {
             <div className="flex flex-col justify-between">
               <div className="flex size-60 w-full justify-center overflow-hidden rounded-md object-contain">
                 <Image
-                  src={form.watch("image") || imagesPlaceHolder}
+                  src={form.watch("image") ? URL.createObjectURL(form.watch("image")) : imagesPlaceHolder}
                   objectFit="true"
                   alt="Default Image"
                   className="size-60 overflow-hidden rounded-sm object-contain"
