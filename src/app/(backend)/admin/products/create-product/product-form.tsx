@@ -3,12 +3,22 @@
 import ButtonCustomized from "@/components/button-customized";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { imagesPlaceHolder } from "@/constant/data";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Save } from "lucide-react";
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as z from "zod";
@@ -34,7 +44,8 @@ export default function ProductForm() {
       title: "A Visual Journey",
       description:
         "Marvel at the artistry of our spaces that are crafted to provide an exceptional experience, emphasizing the comfort and tranquility awaited within.",
-      image: "https://res.cloudinary.com/dzdcszrob/image/upload/v1733872503/icons/qajzdl5t44y0uvtfuhmz.svg",
+      image:
+        "https://res.cloudinary.com/dzdcszrob/image/upload/v1733872503/icons/qajzdl5t44y0uvtfuhmz.svg",
       price: "500",
       duration: "60 min",
       salePrice: 0.0,
@@ -50,7 +61,9 @@ export default function ProductForm() {
         title: "You submitted the following values:",
         description: (
           <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(values, null, 2)}</code>
+            <code className="text-white">
+              {JSON.stringify(values, null, 2)}
+            </code>
           </pre>
         ),
       });
@@ -67,11 +80,23 @@ export default function ProductForm() {
     }
   }
 
+  // Handle image file change
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        form.setValue("image", reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <section className="md:flex gap-4 max-sm:space-y-4">
-          <Card className="p-4 space-y-4 shadow-sm bg-slate-100 md:w-3/4">
+        <section className="gap-4 max-sm:space-y-4 md:flex">
+          <Card className="space-y-4 bg-slate-100 p-4 shadow-sm md:grow">
             {/* Title Field */}
             <FormField
               control={form.control}
@@ -80,7 +105,11 @@ export default function ProductForm() {
                 <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter product title" {...field} />
+                    <Input
+                      placeholder="Enter product title"
+                      {...field}
+                      className="shadow-inner"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -95,7 +124,12 @@ export default function ProductForm() {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Enter product description" {...field} rows={5} className="resize-none" />
+                    <Textarea
+                      placeholder="Enter product description"
+                      {...field}
+                      rows={5}
+                      className="resize-none shadow-inner"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -110,7 +144,12 @@ export default function ProductForm() {
                 <FormItem>
                   <FormLabel>Price</FormLabel>
                   <FormControl>
-                    <Input type="number" placeholder="Enter price" {...field} />
+                    <Input
+                      type="number"
+                      placeholder="Enter price"
+                      {...field}
+                      className="shadow-inner"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -125,7 +164,11 @@ export default function ProductForm() {
                 <FormItem>
                   <FormLabel>Duration (Minute)</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter duration" {...field} />
+                    <Input
+                      placeholder="Enter duration"
+                      {...field}
+                      className="shadow-inner"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -140,7 +183,12 @@ export default function ProductForm() {
                 <FormItem>
                   <FormLabel>Sale Price</FormLabel>
                   <FormControl>
-                    <Input type="number" placeholder="Enter sale price" {...field} />
+                    <Input
+                      type="number"
+                      placeholder="Enter sale price"
+                      {...field}
+                      className="shadow-inner"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -152,39 +200,69 @@ export default function ProductForm() {
               control={form.control}
               name="isActive"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow-inner">
                   <FormControl>
-                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormLabel>Published</FormLabel>
-                    <FormDescription>Disable the checkbox if you don&apos;t this to be live.</FormDescription>
+                    <FormDescription>
+                      Disable the checkbox if you don&apos;t this to be live.
+                    </FormDescription>
                   </div>
                 </FormItem>
               )}
             />
           </Card>
 
-          <Card className="p-4 space-y-4 shadow-sm bg-slate-100 md:w-1/4 md:h-96">
-            <FormField
-              control={form.control}
-              name="image"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Default</FormLabel>
-                  <FormControl>
-                    <Input type="file" accept=".jpg,.jpeg,.png" onChange={(e) => field.onChange(e.target.files?.[0])} />
-                  </FormControl>
-                  <FormDescription>This is your public display name.</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <Card className="h-96 space-y-4 bg-slate-100 p-4 shadow-sm md:shrink">
+            <div className="flex flex-col justify-between">
+              <div className="flex size-60 w-full justify-center overflow-hidden rounded-md object-contain">
+                <Image
+                  src={form.watch("image") || imagesPlaceHolder}
+                  objectFit="true"
+                  alt="Default Image"
+                  className="size-60 overflow-hidden rounded-sm object-contain"
+                  width={500}
+                  height={500}
+                />
+              </div>
+
+              <FormField
+                control={form.control}
+                name="image"
+                render={() => (
+                  <FormItem className="grow-0">
+                    <FormLabel>Default</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="file"
+                        accept=".jpg,.jpeg,.png"
+                        onChange={handleImageChange}
+                        className="bg-gray-100 shadow-inner"
+                      />
+                    </FormControl>
+                    <FormDescription className="text-center">
+                      This is your default image.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
           </Card>
         </section>
 
         {/* Submit Button */}
-        <ButtonCustomized icon={Save} title="Create" formState={form.formState.isSubmitting} className="w-fit mt-4" />
+        <ButtonCustomized
+          icon={Save}
+          title="Create"
+          formState={form.formState.isSubmitting}
+          className="mt-4 w-fit"
+        />
       </form>
     </Form>
   );
