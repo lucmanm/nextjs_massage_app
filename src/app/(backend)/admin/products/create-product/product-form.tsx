@@ -79,6 +79,7 @@ export default function ProductForm() {
       // } else {
       //   toast.error(result.body?.error || "Something went wrong.");
       // }
+      form.reset()
     } catch {
       toast.error("Failed to create user. Please try again.");
     }

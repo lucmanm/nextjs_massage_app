@@ -10,10 +10,15 @@ interface ImageUploadProps {
   id: string;
   name: string;
   label: string;
-  cardName: string
+  cardName: string;
 }
 
-export function InputImageUpload({ id, name, label, cardName }: ImageUploadProps) {
+export function InputImageUpload({
+  id,
+  name,
+  label,
+  cardName,
+}: ImageUploadProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,38 +38,39 @@ export function InputImageUpload({ id, name, label, cardName }: ImageUploadProps
   };
 
   return (
-    <section className="size-40 space-y-2 ">
-      <Card className="relative shadow-inner bg-white overflow-hidden">
-
-      <Input
-      id={id}
-      type="file"
-      name={name}
-      accept=".jpg,.jpeg,.png"
-      onChange={handleImageChange}
-      className={`size-40 aspect-square object-contain  hover:cursor-pointer ${
-        selectedImage && "hidden"
-      }`}
-      aria-label={label}
-      />
-      {selectedImage && (
-      <>
-        <Image
-        src={selectedImage}
-        alt={`Selected ${label}`}
-        width={300}
-        height={300}
-        className="size-40 aspect-square object-contain  hover:cursor-pointer"
+    <section className="size-40 space-y-2">
+      <Card className="relative overflow-hidden bg-white shadow-inner">
+        <Input
+          id={id}
+          type="file"
+          name={name}
+          accept=".jpg,.jpeg,.png"
+          onChange={handleImageChange}
+          className={`aspect-square size-40 object-contain hover:cursor-pointer ${
+            selectedImage && "hidden"
+          }`}
+          aria-label={label}
         />
-        <X
-        className="size-7 text-red-800 absolute top-0 right-0 hover:drop-shadow-lg hover:text-red-600 hover:cursor-pointer"
-        onClick={handleRemoveImage}
-        aria-label={`Remove ${label}`}
-        />
-      </>
-      )}
+        {selectedImage && (
+          <>
+            <Image
+              src={selectedImage}
+              alt={`Selected ${label}`}
+              width={300}
+              height={300}
+              className="aspect-square size-40 object-contain hover:cursor-pointer"
+            />
+            <X
+              className="absolute right-0 top-0 size-7 text-red-800 hover:cursor-pointer hover:text-red-600 hover:drop-shadow-lg"
+              onClick={handleRemoveImage}
+              aria-label={`Remove ${label}`}
+            />
+          </>
+        )}
       </Card>
-      <Card className="rounded-sm font-bold text-center capitalize">{cardName}</Card>
+      <Card className="rounded-sm text-center font-bold capitalize">
+        {cardName}
+      </Card>
     </section>
   );
 }
