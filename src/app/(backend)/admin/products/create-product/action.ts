@@ -63,7 +63,7 @@ export async function uploadImage(values: z.infer<typeof productFormSchema>) {
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
 
-  const response: { secure_url: string } = await new Promise(
+  const response = await new Promise(
     (resolve, reject) => {
       cloudinary.uploader
         .upload_stream(
@@ -87,7 +87,5 @@ export async function uploadImage(values: z.infer<typeof productFormSchema>) {
     },
   );
 
-  console.log("====================================");
-  console.log(response.secure_url);
-  console.log("====================================");
+  return response
 }
