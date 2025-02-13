@@ -60,7 +60,7 @@ export default function ProductForm() {
   // Handle form submission
   async function onSubmit(values: z.infer<typeof productFormSchema>) {
     try {
-      uploadImage(values)
+     await  uploadImage(values)
       toaster({
         title: "You submitted the following values:",
         description: (
@@ -73,7 +73,7 @@ export default function ProductForm() {
       });
       // const result = await createProduct(values);
       // if (result.status === 200) {
-      //   toast.success("Product created successfully!");
+        toast.success("Product created successfully!");
       //   form.reset();
       //   router.push("/admin/products");
       // } else {

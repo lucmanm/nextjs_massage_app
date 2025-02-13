@@ -1,4 +1,4 @@
-"use server"
+"use server";
 import { v2 as cloudinary } from "cloudinary";
 import { z } from "zod";
 import { productFormSchema } from "./product-form";
@@ -56,24 +56,38 @@ export async function uploadImage(values: z.infer<typeof productFormSchema>) {
   const file = values.image;
 
   if (!file) {
-    console.error('No file selected');
+    console.error("No file selected");
     return;
   }
 
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
 
-  await new Promise((resolve, reject) => {
-    cloudinary.uploader.upload_stream({
-      tags: ['nextjs-server-actions-upload-sneakers'],
-      upload_preset: 'touchMesssage'
-    }, function (error, result) {
-      if (error) {
-        reject(error);
-        return;
-      }
-      resolve(result);
-    })
-      .end(buffer);
-  });
+  const response: { secure_url: string } = await new Promise(
+    (resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream(
+          {
+            tags: ["nextjs-server-actions-upload-sneakers"],
+            upload_preset: "touchMesssage",
+          },
+          function (error, result) {
+            if (error) {
+              reject(error);
+              return;
+            }
+            if (result) {
+              resolve(result);
+            } else {
+              reject(new Error("Upload result is undefined"));
+            }
+          },
+        )
+        .end(buffer);
+    },
+  );
+
+  console.log("====================================");
+  console.log(response.secure_url);
+  console.log("====================================");
 }
