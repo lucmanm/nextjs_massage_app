@@ -20,24 +20,24 @@ export const productFormSchema = z.object({
   image: z.string().url("Invalid URL").optional(),
   price: z.string().min(1, "Price is required"),
   duration: z.string().min(1, "Duration is required"),
-  salePrice: z.string().optional(),
-  isActive: z.boolean().optional(),
+  salePrice: z.coerce.number().default(0.0),
+  isActive: z.boolean().default(true),
 });
 
 export default function ProductForm() {
-
-  const { toast: toaster  } = useToast()
+  const { toast: toaster } = useToast();
   // Initialize the form
 
   const form = useForm<z.infer<typeof productFormSchema>>({
     resolver: zodResolver(productFormSchema),
     defaultValues: {
       title: "A Visual Journey",
-      description: "Marvel at the artistry of our spaces that are crafted to provide an exceptional experience, emphasizing the comfort and tranquility awaited within.",
+      description:
+        "Marvel at the artistry of our spaces that are crafted to provide an exceptional experience, emphasizing the comfort and tranquility awaited within.",
       image: "https://res.cloudinary.com/dzdcszrob/image/upload/v1733872503/icons/qajzdl5t44y0uvtfuhmz.svg",
       price: "500",
       duration: "60 min",
-      salePrice: "0.00",
+      salePrice: 0.0,
       isActive: true,
     },
   });
@@ -53,7 +53,7 @@ export default function ProductForm() {
             <code className="text-white">{JSON.stringify(values, null, 2)}</code>
           </pre>
         ),
-      })
+      });
       // const result = await createProduct(values);
       // if (result.status === 200) {
       //   toast.success("Product created successfully!");
@@ -94,7 +94,7 @@ export default function ProductForm() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea placeholder="Enter product description" {...field} />
+                <Textarea placeholder="Enter product description" {...field} rows={5} className="resize-none" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -122,7 +122,7 @@ export default function ProductForm() {
           name="duration"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Duration</FormLabel>
+              <FormLabel>Duration (Minute)</FormLabel>
               <FormControl>
                 <Input placeholder="Enter duration" {...field} />
               </FormControl>
@@ -153,18 +153,11 @@ export default function ProductForm() {
           render={({ field }) => (
             <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
               <FormControl>
-                <Checkbox
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
+                <Checkbox checked={field.value} onCheckedChange={field.onChange} />
               </FormControl>
               <div className="space-y-1 leading-none">
-                <FormLabel>
-                  Published
-                </FormLabel>
-                <FormDescription>
-                  Disable the checkbox if you don&apos;t this to be live.
-                </FormDescription>
+                <FormLabel>Published</FormLabel>
+                <FormDescription>Disable the checkbox if you don&apos;t this to be live.</FormDescription>
               </div>
             </FormItem>
           )}
