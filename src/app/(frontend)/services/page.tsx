@@ -1,8 +1,8 @@
+import { getProducts } from "@/actions/products";
 import GallerySection from "@/components/gallery-section";
-import { prisma } from "@/lib/db";
 
 export default async function Services() {
-  const products = await prisma.product.findMany({include: {images: true}})
+  const products = await getProducts()
 
   return (
     <div className="container mx-auto max-sm:px-4 py-4">
