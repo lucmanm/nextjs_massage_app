@@ -35,9 +35,10 @@ export default function GallerySection({ data, title }: TProduct) {
                 <Image
                   src={item.images[0].url}
                   alt={item.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-t-lg"
+                  className="rounded-t-lg object-cover"
+                  fill
+                  sizes="500"
+                  priority
                 />
 
                 {/* Price */}
