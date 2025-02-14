@@ -19,7 +19,7 @@ export default function RootLayout({
     <Fragment>
       <div className="flex flex-col min-h-screen max-sm:mb-14">
         <Header />
-        <main className="flex-grow  flex bg-muted">{children}</main>
+        <main className="flex-grow  flex">{children}</main>
         <Footer />
         <BottomNav />
       </div>
