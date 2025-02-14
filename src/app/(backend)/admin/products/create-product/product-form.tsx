@@ -33,12 +33,12 @@ export default function ProductForm() {
   const form = useForm<z.infer<typeof productFormSchema>>({
     resolver: zodResolver(productFormSchema),
     defaultValues: {
-      title: "A Visual Journey",
+      title: "",
       description:
-        "Marvel at the artistry of our spaces that are crafted to provide an exceptional experience, emphasizing the comfort and tranquility awaited within.",
+        "",
       image: undefined,
-      price: "500",
-      duration: "60 min",
+      price: "",
+      duration: "",
       salePrice: 0.0,
       isActive: true,
     },

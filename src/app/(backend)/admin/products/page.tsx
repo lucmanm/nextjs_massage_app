@@ -4,7 +4,7 @@ import { getProducts } from "./product.action";
 
 export default async function Page() {
   const data = await getProducts();
-  // CONTINUE From Shadcn Pagination
+
   return (
     <div className="container mx-auto py-10">
       <DataTable columns={columns} data={data} />
