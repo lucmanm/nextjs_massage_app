@@ -15,32 +15,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { imagesPlaceHolder } from "@/constant/data";
-import { useToast } from "@/hooks/use-toast";
+import { productFormSchema } from "@/lib/zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Save } from "lucide-react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as z from "zod";
-import { uploadImage } from "./action";
+import { createProduct } from "./action";
+import { uploadImage } from "@/lib/coudinary-image-upload";
 
-// Define the form schema using Zod
-export const productFormSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  description: z.string().min(1, "Description is required"),
-  price: z.string().min(1, "Price is required"),
-  duration: z.string().min(1, "Duration is required"),
-  salePrice: z.coerce.number().default(0.0),
-  isActive: z.boolean().default(true),
-  image: z
-    .instanceof(File)
-    .refine((file) => file.size > 0, { message: 'Image is required' })
-    .refine((file) => file.type.startsWith('image/'), { message: 'Only image files are allowed' }),
-});
 
 
 export default function ProductForm() {
-  const { toast: toaster } = useToast();
   // Initialize the form
 
   const form = useForm<z.infer<typeof productFormSchema>>({
@@ -60,26 +47,19 @@ export default function ProductForm() {
   // Handle form submission
   async function onSubmit(values: z.infer<typeof productFormSchema>) {
     try {
-     await  uploadImage(values)
-      toaster({
-        title: "You submitted the following values:",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">
-              {JSON.stringify(values, null, 2)}
-            </code>
-          </pre>
-        ),
-      });
-      // const result = await createProduct(values);
-      // if (result.status === 200) {
-        toast.success("Product created successfully!");
-      //   form.reset();
-      //   router.push("/admin/products");
-      // } else {
-      //   toast.error(result.body?.error || "Something went wrong.");
-      // }
-      form.reset()
+      const uploadResult = await uploadImage(values.image)
+
+      if (uploadResult) {
+        const result = await createProduct(values, uploadResult.secure_url || "");
+        if (result.status === 200) {
+          toast.success("Product created successfully!");
+          form.reset();
+          // router.push("/admin/products");
+        } else {
+          toast.error(result.body?.error || "Something went wrong.");
+        }
+        form.reset();
+      }
     } catch {
       toast.error("Failed to create user. Please try again.");
     }
@@ -227,7 +207,11 @@ export default function ProductForm() {
             <div className="flex flex-col justify-between">
               <div className="flex size-60 w-full justify-center overflow-hidden rounded-md object-contain">
                 <Image
-                  src={form.watch("image") ? URL.createObjectURL(form.watch("image")) : imagesPlaceHolder}
+                  src={
+                    form.watch("image")
+                      ? URL.createObjectURL(form.watch("image"))
+                      : imagesPlaceHolder
+                  }
                   objectFit="true"
                   alt="Default Image"
                   className="size-60 overflow-hidden rounded-sm object-contain"

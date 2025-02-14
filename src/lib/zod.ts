@@ -28,3 +28,19 @@ export const loginSchema = z.object({
     message: "Password must be at least 6 characters.",
   }),
 });
+
+// Define the form schema using Zod
+export const productFormSchema = z.object({
+  title: z.string().min(1, "Title is required"),
+  description: z.string().min(1, "Description is required"),
+  price: z.string().min(1, "Price is required"),
+  duration: z.string().min(1, "Duration is required"),
+  salePrice: z.coerce.number().default(0.0),
+  isActive: z.boolean().default(true),
+  image: z
+    .instanceof(File)
+    .refine((file) => file.size > 0, { message: "Image is required" })
+    .refine((file) => file.type.startsWith("image/"), {
+      message: "Only image files are allowed",
+    }),
+});

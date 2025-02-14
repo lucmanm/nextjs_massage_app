@@ -1,91 +1,53 @@
 "use server";
-import { v2 as cloudinary } from "cloudinary";
+import { prisma } from "@/lib/db";
+import { productFormSchema } from "@/lib/zod";
 import { z } from "zod";
-import { productFormSchema } from "./product-form";
 
-cloudinary.config({
-  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
 
-// export async function createProduct(values: z.infer<typeof productFormSchema>) {
 
-//   try {
+export async function createProduct(values: z.infer<typeof productFormSchema>, image: string) {
 
-//     const checkProduct = await prisma.product.findFirst({
-//       where: {
-//         OR: [
-//           { title: values.title },
-//           { description: values.description },
-//         ],
-//       },
-//     });
+  try {
+    const { title, description, duration, isActive, salePrice } = productFormSchema.parse(values)
 
-//     if (checkProduct) {
-//       return { status: 400, body: { error: "Product with the same title or description already exists." } };
-//     }
+    const checkProduct = await prisma.product.findFirst({
+      where: {
+        OR: [
+          { title: values.title },
+          { description: values.description },
+        ],
+      },
+    });
 
-//     await prisma.product.create({
-//       data: {
-//         title: values.title,
-//         description: values.description,
-//         price: parseFloat(values.price),
-//         salePrice: values.salePrice ? parseFloat(values.salePrice) : undefined,
-//         // Assuming `values.images` contains the image data for the one-to-many relationship
-//         // images: {
-//         //   create: []
-//         // },
-//       },
-//     });
+    if (checkProduct) {
+      return { status: 400, body: { error: "Product with the same title or description already exists." } };
+    }
 
-//     return { status: 200, body: { message: "Product created successfully." } };
 
-//   } catch {
+    await prisma.product.create({
+      data: {
+        title,
+        description,
+        duration,
+        isActive,
+        price: parseFloat(values.price),
+        salePrice: salePrice ? salePrice : undefined,
+        images: {
+          create: image ? [{ url: image }] : [],
+        },
+      },
+    });
 
-//     return {
-//       status: 500,
-//       body: {
-//         error: "Internal server error"
-//       }
-//     }
-//   }
-// }
+    return { status: 200, body: { message: "Product created successfully." } };
 
-export async function uploadImage(values: z.infer<typeof productFormSchema>) {
-  const file = values.image;
+  } catch {
 
-  if (!file) {
-    console.error("No file selected");
-    return;
+    return {
+      status: 500,
+      body: {
+        error: "Internal server error"
+      }
+    }
   }
-
-  const arrayBuffer = await file.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer);
-
-  const response = await new Promise(
-    (resolve, reject) => {
-      cloudinary.uploader
-        .upload_stream(
-          {
-            tags: ["nextjs-server-actions-upload-sneakers"],
-            upload_preset: "touchMesssage",
-          },
-          function (error, result) {
-            if (error) {
-              reject(error);
-              return;
-            }
-            if (result) {
-              resolve(result);
-            } else {
-              reject(new Error("Upload result is undefined"));
-            }
-          },
-        )
-        .end(buffer);
-    },
-  );
-
-  return response
 }
+
