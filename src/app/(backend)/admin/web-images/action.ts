@@ -71,7 +71,7 @@ export async function uploadSliderImages(formData: FormData) {
 
     try {
         // Upload all files to Cloudinary
-        const uploadPromises = files.map((file) => {
+        const uploadPromises = files.map((file, index) => {
             return new Promise((resolve, reject) => {
                 (file as File).arrayBuffer().then((arrayBuffer) => {
                     const buffer = Buffer.from(arrayBuffer);
@@ -79,7 +79,7 @@ export async function uploadSliderImages(formData: FormData) {
                     cloudinary.uploader
                         .upload_stream(
                             {
-                                tags: ["slider-image"],
+                                tags: [`sliderID${index + 1}`, "slider-image"],
                                 upload_preset: "touchMassage",
                             },
                             function (error, result) {
@@ -105,5 +105,16 @@ export async function uploadSliderImages(formData: FormData) {
     } catch (error) {
         console.error("Failed to upload images:", error);
         throw new Error("Failed to upload images. Please try again.");
+    }
+}
+// TODO DELETE TAG
+export async function deleteResourcesByTag(tagID: string) {
+    try {
+        const result = await cloudinary.api.delete_related_assets(tagID, "");
+        console.log(`Deleted resources with tag "${tagID}":`, result);
+        return result;
+    } catch (error) {
+        console.error(`Error deleting resources with tag "${tagID}":`, error);
+        throw error;
     }
 }

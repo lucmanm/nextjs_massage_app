@@ -31,7 +31,7 @@ const SwiperSlider = ({ className, data }: { className?: string, data: { secure_
         modules={[EffectCoverflow, Pagination]}
         className="w-full"
       >
-        {!data.length ? data.map((image, index) => (
+        {data.length ? data.map((image, index) => (
           <SwiperSlide
             key={index}
             className="flex justify-center items-center bg-white rounded-lg shadow-md my-12"

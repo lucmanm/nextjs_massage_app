@@ -1,18 +1,31 @@
 import { Card } from "@/components/ui/card";
-import { WebImageForm } from "./web-image-form";
+import cloudinary from "@/config/cloudinary";
+import TestDiv from "./test-div";
 import UploadSliderImages from "./upload-sliders";
-
+import { WebImageForm } from "./web-image-form";
 
 async function Page() {
-// TODO Create a upload slider for frontend
+  // TODO DELETE TAG
+  const { resources: slidersData } = await cloudinary.api.resources_by_tag(
+    "slider-image",
+    { context: true },
+  );
+
+  console.log('====================================');
+  console.log(slidersData);
+  console.log('====================================');
+  // TODO Create a upload slider for frontend
   return (
-    <div className="p-4 flex-1">
+    <div className="flex-1 p-4">
       <Card className="flex-1 grow">
-        <h2 className="text-xl font-bold flex items-center py-2 pl-2">Web Images</h2>
+        <h2 className="flex items-center py-2 pl-2 text-xl font-bold">
+          Web Images
+        </h2>
       </Card>
       <WebImageForm />
-      <UploadSliderImages/>
-   </div>
+      <UploadSliderImages />
+      <TestDiv data={slidersData} />
+    </div>
   );
 }
 
