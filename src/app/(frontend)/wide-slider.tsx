@@ -31,7 +31,7 @@ const SwiperSlider = ({ className, data }: { className?: string, data: { secure_
         modules={[EffectCoverflow, Pagination]}
         className="w-full"
       >
-        {data.map((image, index) => (
+        {!data.length ? data.map((image, index) => (
           <SwiperSlide
             key={index}
             className="flex justify-center items-center bg-white rounded-lg shadow-md my-12"
@@ -47,7 +47,10 @@ const SwiperSlider = ({ className, data }: { className?: string, data: { secure_
               />
             </div>
           </SwiperSlide>
-        ))}
+        ))
+        :
+        <div className="border container mx-auto my-4 text-red-600 text-center">Slider Data not available</div>
+      }
       </Swiper>
     </div>
   );
