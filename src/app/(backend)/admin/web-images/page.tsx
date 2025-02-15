@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { WebImageForm } from "./web-image-form";
+import UploadSliderImages from "./upload-sliders";
 
 
 async function Page() {
@@ -10,6 +11,7 @@ async function Page() {
         <h2 className="text-xl font-bold flex items-center py-2 pl-2">Web Images</h2>
       </Card>
       <WebImageForm />
+      <UploadSliderImages/>
    </div>
   );
 }
