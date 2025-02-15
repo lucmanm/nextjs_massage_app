@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ImageIcon, Save, Trash } from "lucide-react";
 import Image from "next/image";
+import { uploadSliderImages } from "./action";
 
 const imageSchema = z.object({
   images: z
@@ -26,6 +27,7 @@ export default function UploadSliderImages() {
   const [selectedImages, setSelectedImages] = useState<
     { file: File; url: string }[]
   >([]);
+
   const { handleSubmit, control, setValue } = useForm<ImageUploadForm>({
     resolver: zodResolver(imageSchema),
     defaultValues: { images: [] },
@@ -48,8 +50,19 @@ export default function UploadSliderImages() {
     setValue("images", updatedImages);
   };
 
-  const onSubmit = (data: ImageUploadForm) => {
-    console.log("Uploading Images:", data);
+  const onSubmit = async (data: ImageUploadForm) => {
+    const formData = new FormData();
+    data.images.forEach((image, index) => {
+      formData.append(`image${index}`, image.file);
+    });
+
+    try {
+      await uploadSliderImages(formData);
+      alert("Images uploaded successfully!");
+    } catch (error) {
+      console.error("Failed to upload images:", error);
+      alert("Failed to upload images. Please try again.");
+    }
   };
 
   return (
@@ -59,14 +72,21 @@ export default function UploadSliderImages() {
       </Card>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Image Previews */}
-
         {selectedImages.length > 0 ? (
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {selectedImages.map((image, index) => (
               <Card
                 key={index}
-                className="relative aspect-video h-40 w-96 overflow-hidden object-cover shadow-none"
+                className="relative aspect-video overflow-hidden shadow-none"
               >
+                <Image
+                  src={image.url}
+                  alt="Selected"
+                  className="h-full w-full object-contain"
+                  width={1200}
+                  height={600}
+                />
+
                 <Button
                   type="button"
                   size="icon"
@@ -75,14 +95,6 @@ export default function UploadSliderImages() {
                 >
                   <Trash size={16} />
                 </Button>
-
-                <Image
-                  src={image.url}
-                  alt="Selected"
-                  className="aspect-video overflow-hidden rounded object-cover"
-                  width={1200}
-                  height={600}
-                />
               </Card>
             ))}
           </div>
