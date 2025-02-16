@@ -11,10 +11,6 @@ async function Page() {
     { context: true },
   );
 
-  console.log('====================================');
-  console.log(slidersData);
-  console.log('====================================');
-  // TODO Create a upload slider for frontend
   return (
     <div className="flex-1 p-4">
       <Card className="flex-1 grow">

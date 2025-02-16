@@ -108,13 +108,15 @@ export async function uploadSliderImages(formData: FormData) {
     }
 }
 // TODO DELETE TAG
-export async function deleteResourcesByTag(tagID: string) {
+export async function deleteResourcesByPublicIds(public_ids: string) {
     try {
-        const result = await cloudinary.api.delete_related_assets(tagID, "");
-        console.log(`Deleted resources with tag "${tagID}":`, result);
+        const result = await cloudinary.api.delete_resources([public_ids]);
+        console.log(`Deleted resources with tag "${public_ids}":`, result);
+        // TODO reutn success message
+        revalidatePath("/admin/web-images")
         return result;
     } catch (error) {
-        console.error(`Error deleting resources with tag "${tagID}":`, error);
+        console.error(`Error deleting resources with tag "${public_ids}":`, error);
         throw error;
     }
 }

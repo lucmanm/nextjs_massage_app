@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { ImageIcon, Save, Trash } from "lucide-react";
 import Image from "next/image";
 import { uploadSliderImages } from "./action";
+import { toast } from "react-toastify";
 
 const imageSchema = z.object({
   images: z
@@ -58,7 +59,7 @@ export default function UploadSliderImages() {
 
     try {
       await uploadSliderImages(formData);
-      alert("Images uploaded successfully!");
+      toast.success("Images uploaded successfully!");
     } catch (error) {
       console.error("Failed to upload images:", error);
       alert("Failed to upload images. Please try again.");
