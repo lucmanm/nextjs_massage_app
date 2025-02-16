@@ -106,7 +106,6 @@ export async function uploadSliderImages(formData: FormData) {
 export async function deleteResourcesByPublicIds(public_ids: string) {
     try {
         const result = await cloudinary.api.delete_resources([public_ids]);
-        console.log(`Deleted resources with tag "${public_ids}":`, result);
         // TODO reutn success message
         revalidatePath("/admin/web-images")
         return result;
