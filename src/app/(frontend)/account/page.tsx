@@ -1,4 +1,5 @@
+import MobileNavigation from "./comp-mobile-nav";
 
-export default function AccountRootLayout() {
-  return <div>Index</div>
+export default function AccountRoot() {
+  return <MobileNavigation className="sm:hidden"/>
 }
