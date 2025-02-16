@@ -1,11 +1,7 @@
 "use server"
-import { v2 as cloudinary } from "cloudinary";
 
-cloudinary.config({
-    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+import cloudinary from "@/config/cloudinary";
+
 
 export async function uploadImage(image: File): Promise<{ secure_url?: string, status?: number, body?: { message: string } }> {
 
