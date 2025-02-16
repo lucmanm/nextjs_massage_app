@@ -13,6 +13,7 @@ const Page = async ({ params }: { params: Promise<{ accountSlug: string }> }) =>
   const accountSegmentFound = accountData.find(
     (data) => data.title.toLowerCase() === accountSegment.toLowerCase(),
   );
+
   if (!accountSegmentFound) {
     return notFound();
   }
@@ -26,9 +27,10 @@ const Page = async ({ params }: { params: Promise<{ accountSlug: string }> }) =>
         <CardDescription>{accountSegmentFound?.description}</CardDescription>
       </Card>
       {/* contents */}
-      <Card>
+      <Card className="p-4 border">
         Data
       </Card>
+
     </div>
   );
 };

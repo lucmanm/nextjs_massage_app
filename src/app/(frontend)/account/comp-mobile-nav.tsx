@@ -3,8 +3,6 @@ import { authMenuData } from "@/constant/data";
 import { cn } from "@/lib/utils";
 
 export default function MobileNavigation({ className }: { className?: string }) {
-
-
   return (
     <section className={cn(`min-h-screen bg-gray-50 p-4`, className)}>
       <div className="mx-auto max-w-4xl">
