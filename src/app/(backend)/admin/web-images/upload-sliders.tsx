@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ImageIcon, Save, Trash } from "lucide-react";
 import Image from "next/image";
-import { uploadSliderImages } from "./action";
+import { deleteResourcesByPublicIds, uploadSliderImages } from "./action";
 import { toast } from "react-toastify";
 
 const imageSchema = z.object({
@@ -24,7 +24,11 @@ const imageSchema = z.object({
 
 type ImageUploadForm = z.infer<typeof imageSchema>;
 
-export default function UploadSliderImages() {
+export default function UploadSliderImages({
+  items,
+}: {
+  items: { secure_url: string; public_id: string }[];
+}) {
   const [selectedImages, setSelectedImages] = useState<
     { file: File; url: string }[]
   >([]);
@@ -73,8 +77,33 @@ export default function UploadSliderImages() {
       </Card>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Image Previews */}
-        {selectedImages.length > 0 ? (
+
+        {selectedImages.length > 0 || items.length ? (
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {items.map((image, index) => (
+              <Card
+                key={index}
+                className="relative aspect-video overflow-hidden shadow-none"
+              >
+                <Image
+                  src={image.secure_url}
+                  alt="Selected"
+                  className="h-full w-full object-contain"
+                  width={1200}
+                  height={600}
+                />
+
+                <Button
+                  type="button"
+                  size="icon"
+                  className="absolute right-1 top-1 size-7 rounded-full bg-red-500 p-1 text-white"
+                  onClick={async() => {await deleteResourcesByPublicIds(image.public_id)}}
+                >
+                  <Trash size={16} />
+                </Button>
+              </Card>
+            ))}
+
             {selectedImages.map((image, index) => (
               <Card
                 key={index}

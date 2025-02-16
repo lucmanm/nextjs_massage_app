@@ -1,11 +1,10 @@
 import { Card } from "@/components/ui/card";
 import cloudinary from "@/config/cloudinary";
-import TestDiv from "./test-div";
 import UploadSliderImages from "./upload-sliders";
 import { WebImageForm } from "./web-image-form";
 
 async function Page() {
-  // TODO DELETE TAG
+
   const { resources: slidersData } = await cloudinary.api.resources_by_tag(
     "slider-image",
     { context: true },
@@ -19,8 +18,7 @@ async function Page() {
         </h2>
       </Card>
       <WebImageForm />
-      <UploadSliderImages />
-      <TestDiv data={slidersData} />
+      <UploadSliderImages items={slidersData} />
     </div>
   );
 }
