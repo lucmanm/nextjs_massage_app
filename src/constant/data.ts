@@ -196,6 +196,15 @@ interface NavProps {
 }
 
 export const accountData: NavProps["links"] = [
+
+  {
+    title: "Account",
+    description: "View, update account information- Change account password.",
+    icon: UserRoundPen,
+    label: "",
+    variant: "ghost",
+  },
+
   {
     title: "orders",
     description: "Track your order, check order status, retum yow product or buy the product again.",
@@ -218,13 +227,7 @@ export const accountData: NavProps["links"] = [
     label: "",
     variant: "ghost",
   },
-  {
-    title: "profile details",
-    description: "View, update account information- Change account password.",
-    icon: UserRoundPen,
-    label: "",
-    variant: "ghost",
-  },
+
   {
     title: "review",
     description: "View the vyevious reviews you have submitted.",

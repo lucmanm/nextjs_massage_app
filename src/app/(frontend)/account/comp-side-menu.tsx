@@ -21,7 +21,7 @@ interface NavProps {
   }[];
 }
 
-export function Nav({ links, isCollapsed }: NavProps) {
+export function SideNav({ links, isCollapsed }: NavProps) {
   return (
     <TooltipProvider delayDuration={0}>
       <div

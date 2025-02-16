@@ -1,5 +1,5 @@
 import { accountData } from "@/constant/data";
-import { Nav } from "./comp-side-menu";
+import { SideNav } from "./comp-side-menu";
 
 export default function AccountLayout({
   children,
@@ -9,7 +9,7 @@ export default function AccountLayout({
   return (
     <section className="container mx-auto lg:flex py-4 gap-4">
       <div className="hidden md:block md:w-1/4 ">
-        <Nav isCollapsed={false} links={accountData} />
+        <SideNav isCollapsed={false} links={accountData} />
       </div>
       <div className="border lg:flex-1 rounded-md">{children}</div>
     </section>
