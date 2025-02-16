@@ -1,5 +1,5 @@
 import UserCard from "@/components/user-card";
-import { authMenuData } from "@/constant/data";
+import { accountData } from "@/constant/data";
 import { cn } from "@/lib/utils";
 
 export default function MobileNavigation({ className }: { className?: string }) {
@@ -20,10 +20,10 @@ export default function MobileNavigation({ className }: { className?: string }) 
         {/* Menu */}
 
         <div className="mt-8 grid grid-cols-3 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {authMenuData.map((item) => (
+          {accountData.map((item) => (
             <a
-              key={item.href}
-              href={item.href}
+              key={item.title}
+              href={`/account/${item.title}`}
               className="flex flex-col items-center rounded-md border bg-white p-4 shadow-sm transition hover:bg-gray-100"
             >
               <item.icon className="mb-2 h-6 w-6 text-gray-700" />
