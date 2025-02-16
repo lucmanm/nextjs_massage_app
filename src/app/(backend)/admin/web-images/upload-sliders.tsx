@@ -63,6 +63,7 @@ export default function UploadSliderImages({
 
     try {
       await uploadSliderImages(formData);
+      setSelectedImages([]);
       toast.success("Images uploaded successfully!");
     } catch (error) {
       console.error("Failed to upload images:", error);
@@ -80,30 +81,6 @@ export default function UploadSliderImages({
 
         {selectedImages.length > 0 || items.length ? (
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {items.map((image, index) => (
-              <Card
-                key={index}
-                className="relative aspect-video overflow-hidden shadow-none"
-              >
-                <Image
-                  src={image.secure_url}
-                  alt="Selected"
-                  className="h-full w-full object-contain"
-                  width={1200}
-                  height={600}
-                />
-
-                <Button
-                  type="button"
-                  size="icon"
-                  className="absolute right-1 top-1 size-7 rounded-full bg-red-500 p-1 text-white"
-                  onClick={async() => {await deleteResourcesByPublicIds(image.public_id)}}
-                >
-                  <Trash size={16} />
-                </Button>
-              </Card>
-            ))}
-
             {selectedImages.map((image, index) => (
               <Card
                 key={index}
@@ -122,6 +99,32 @@ export default function UploadSliderImages({
                   size="icon"
                   className="absolute right-1 top-1 size-7 rounded-full bg-red-500 p-1 text-white"
                   onClick={() => removeImage(index)}
+                >
+                  <Trash size={16} />
+                </Button>
+              </Card>
+            ))}
+
+            {items.map((image, index) => (
+              <Card
+                key={index}
+                className="relative aspect-video overflow-hidden shadow-none"
+              >
+                <Image
+                  src={image.secure_url}
+                  alt="Selected"
+                  className="h-full w-full object-contain"
+                  width={1200}
+                  height={600}
+                />
+
+                <Button
+                  type="button"
+                  size="icon"
+                  className="absolute right-1 top-1 size-7 rounded-full bg-red-500 p-1 text-white"
+                  onClick={async () => {
+                    await deleteResourcesByPublicIds(image.public_id);
+                  }}
                 >
                   <Trash size={16} />
                 </Button>
