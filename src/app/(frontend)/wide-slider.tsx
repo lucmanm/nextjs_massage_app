@@ -35,15 +35,17 @@ const SwiperSlider = ({ className, data }: { className?: string, data: { secure_
           <SwiperSlide
             key={index}
             className="flex justify-center items-center bg-white rounded-lg shadow-md my-12"
-            style={{ maxWidth: "90%", minWidth: "300px" }} // Controls slide width
+            style={{ maxWidth: "90%", minWidth: "400px" }} // Increased minWidth for larger slides
           >
-            <div className="w-full h-[520px] max-sm:h-52 relative flex justify-center items-center ">
+            <div className="w-full h-[600px] max-sm:h-52 relative flex justify-center items-center ">
               <Image
                 src={image.secure_url}
                 alt={`Slide ${index + 1}`}
                 fill
                 className="rounded-lg object-cover"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                quality={100} // Increase image quality to 100%
+                priority={index === 0} // Prioritize loading the first image
               />
             </div>
           </SwiperSlide>
