@@ -25,7 +25,8 @@ import * as z from "zod";
 import { createProduct } from "./action";
 import { uploadImage } from "@/lib/coudinary-image-upload";
 
-
+//TODO Applied the multiple image upload in here
+//TODO Applied 2 input to set the time
 
 export default function ProductForm() {
   // Initialize the form
@@ -34,8 +35,7 @@ export default function ProductForm() {
     resolver: zodResolver(productFormSchema),
     defaultValues: {
       title: "",
-      description:
-        "",
+      description: "",
       image: undefined,
       price: "",
       duration: "",
@@ -47,10 +47,13 @@ export default function ProductForm() {
   // Handle form submission
   async function onSubmit(values: z.infer<typeof productFormSchema>) {
     try {
-      const uploadResult = await uploadImage(values.image)
+      const uploadResult = await uploadImage(values.image);
 
       if (uploadResult) {
-        const result = await createProduct(values, uploadResult.secure_url || "");
+        const result = await createProduct(
+          values,
+          uploadResult.secure_url || "",
+        );
         if (result.status === 200) {
           toast.success("Product created successfully!");
           form.reset();
