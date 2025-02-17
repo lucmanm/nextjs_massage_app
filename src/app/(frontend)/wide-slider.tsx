@@ -8,10 +8,15 @@ import { EffectCoverflow, Pagination } from "swiper/modules";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-const SwiperSlider = ({ className, data }: { className?: string, data: { secure_url: string }[] }) => {
-
+const SwiperSlider = ({
+  className,
+  data,
+}: {
+  className?: string;
+  data: { secure_url: string }[];
+}) => {
   return (
-    <div className={cn("relative w-full px-0 ", className)}>
+    <div className={cn("relative w-full px-0", className)}>
       {/* Adds space on both sides */}
       <Swiper
         effect={"coverflow"}
@@ -31,26 +36,29 @@ const SwiperSlider = ({ className, data }: { className?: string, data: { secure_
         modules={[EffectCoverflow, Pagination]}
         className="w-full"
       >
-        {data.length ? data.map((image, index) => (
-          <SwiperSlide
-            key={index}
-            className="flex justify-center items-center bg-white rounded-lg shadow-md my-12"
-            style={{ maxWidth: "90%", minWidth: "300px" }} // Controls slide width
-          >
-            <div className="w-full h-[520px] max-sm:h-52 relative flex justify-center items-center ">
-              <Image
-                src={image.secure_url}
-                alt={`Slide ${index + 1}`}
-                fill
-                className="rounded-lg object-cover"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-            </div>
-          </SwiperSlide>
-        ))
-        :
-        <div className="border container mx-auto my-4 text-red-600 text-center">Slider Data not available</div>
-      }
+        {data.length ? (
+          data.map((image, index) => (
+            <SwiperSlide
+              key={index}
+              className="my-12 flex items-center justify-center rounded-lg bg-white shadow-md"
+              style={{ maxWidth: "90%", minWidth: "300px" }} // Controls slide width
+            >
+              <div className="relative flex h-[520px] w-full items-center justify-center max-sm:h-52">
+                <Image
+                  src={image.secure_url}
+                  alt={`Slide ${index + 1}`}
+                  fill
+                  className="rounded-lg object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
+            </SwiperSlide>
+          ))
+        ) : (
+          <div className="container mx-auto my-4 border text-center text-red-600">
+            Slider Data not available
+          </div>
+        )}
       </Swiper>
     </div>
   );
