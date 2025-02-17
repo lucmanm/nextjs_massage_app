@@ -1,5 +1,4 @@
-import { accountData } from "@/constant/data";
-import { SideNav } from "./comp-side-menu";
+import { SideMenu } from "./comp-side-menu";
 
 export default function AccountLayout({
   children,
@@ -7,11 +6,11 @@ export default function AccountLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="container mx-auto lg:flex py-4 gap-4">
+    <section className="container mx-auto gap-4 py-4 lg:flex">
       <div className="hidden md:block md:w-1/4">
-        <SideNav isCollapsed={false} links={accountData} />
+        <SideMenu />
       </div>
-      <div className="border lg:flex-1 rounded-md">{children}</div>
+      <div className="rounded-md border lg:flex-1">{children}</div>
     </section>
   );
 }

@@ -1,8 +1,8 @@
 {
     "prisma-smart-formatter.typescript.defaultFormatter": "vscode.typescript-language-features",
-    "prisma-smart-formatter.typescriptreact.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "prisma-smart-formatter.typescriptreact.defaultFormatter": "esbenp.prettier-vscode",
     "prisma-smart-formatter.prisma.defaultFormatter": "Prisma.prisma",
     "[typescriptreact]": {
-        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
 }
