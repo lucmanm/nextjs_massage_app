@@ -10,7 +10,7 @@ export default function UserCard() {
   };
 
   return (
-    <Card className="flex items-center gap-4 rounded-md border bg-white p-6 shadow-sm">
+    <Card className="flex items-center gap-4 rounded-md border bg-white p-6 shadow-none">
       {user.profilePicture ? (
         <Image
           src={user.profilePicture}

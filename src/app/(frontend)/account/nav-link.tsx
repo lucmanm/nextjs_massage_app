@@ -8,7 +8,6 @@ import { usePathname } from "next/navigation";
 export default function NavLink({ item }: { item: NavProps }) {
   const pathname = usePathname();
 
-
   const IconComponent = iconComponents[item.icon];
 
   // Determine if the current link is active
@@ -18,8 +17,8 @@ export default function NavLink({ item }: { item: NavProps }) {
     <Link
       href={`/account/${item.title.toLowerCase()}`}
       className={cn(
-        buttonVariants({ size: "sm" }), // Base button styles
-        "justify-start bg-transparent capitalize text-muted-foreground hover:text-muted",
+        buttonVariants({ size: "default" }), // Base button styles
+        "justify-start border-none bg-transparent capitalize text-slate-700 shadow-none hover:text-muted",
         isActive // Active state condition
           ? "bg-blue-600 capitalize text-muted" // Active styles
           : "font-normal", // Common styles
