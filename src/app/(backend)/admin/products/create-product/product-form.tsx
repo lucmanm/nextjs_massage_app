@@ -27,7 +27,7 @@ import { uploadImage } from "@/lib/coudinary-image-upload";
 
 //TODO Applied the multiple image upload in here
 //TODO Applied 2 input to set the time
-
+// TEST COMMENT
 export default function ProductForm() {
   // Initialize the form
 
