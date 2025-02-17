@@ -5,6 +5,7 @@ import { Product } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 
 import CellAction from "./cell-action";
+import { ImageIcon } from "lucide-react";
 
 export type ProductWithoutTimestamps = Omit<Product, "createdAt" | "updatedAt">;
 
@@ -12,14 +13,17 @@ export const columns: ColumnDef<ProductWithoutTimestamps>[] = [
   {
     accessorKey: "image",
     header: () => <div className="text-center">Image</div>,
+    cell: () => <ImageIcon className="size-24 text-blue-600" />,
   },
   {
     accessorKey: "title",
     header: "Title",
+    cell: ({ row }) => <div className="w-40">{row.original.title}</div>,
   },
   {
     accessorKey: "description",
     header: "Description",
+    cell: ({ row }) => <div className="w-96">{row.original.description}</div>,
   },
   {
     accessorKey: "price",
