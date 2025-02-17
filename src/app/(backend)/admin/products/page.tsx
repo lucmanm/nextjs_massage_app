@@ -1,5 +1,5 @@
-import { columns } from "../_components/table/columns";
-import { DataTable } from "../_components/table/data-table";
+import { columns } from "./components/columns";
+import { DataTable } from "./components/data-table";
 import { getProducts } from "./product.action";
 
 export default async function Page() {

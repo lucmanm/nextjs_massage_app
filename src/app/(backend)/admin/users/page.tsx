@@ -1,7 +1,7 @@
 import { User } from "@prisma/client";
 import { CreateUserForm } from "./create-user-form";
 import { columns } from "./table/columns";
-import { DataTable } from "../_components/table/data-table";
+import { DataTable } from "../products/components/data-table";
 import { prisma } from "@/lib/db";
 
 async function getData(): Promise<User[]> {
