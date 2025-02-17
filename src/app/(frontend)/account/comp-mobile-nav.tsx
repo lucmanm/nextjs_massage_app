@@ -2,7 +2,11 @@ import UserCard from "@/components/user-card";
 import { accountData } from "@/constant/data";
 import { cn } from "@/lib/utils";
 
-export default function MobileNavigation({ className }: { className?: string }) {
+export default function MobileNavigation({
+  className,
+}: {
+  className?: string;
+}) {
   return (
     <section className={cn(`min-h-screen bg-gray-50 p-4`, className)}>
       <div className="mx-auto max-w-4xl">
@@ -15,7 +19,7 @@ export default function MobileNavigation({ className }: { className?: string }) 
         </div>
 
         {/* Header Card */}
-        <UserCard/>
+        <UserCard />
 
         {/* Menu */}
 
