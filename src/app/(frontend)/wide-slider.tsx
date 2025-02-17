@@ -8,7 +8,7 @@ import { EffectCoverflow, Pagination } from "swiper/modules";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-const SwiperSlider = ({
+export const SwiperSlider = ({
   className,
   data,
 }: {
@@ -22,8 +22,8 @@ const SwiperSlider = ({
         effect={"coverflow"}
         grabCursor={true}
         centeredSlides={true}
-        slidesPerView={"auto"}
-        loop={true}
+        slidesPerView="auto"
+        loop
         spaceBetween={50} // Adjusts gap between slides
         coverflowEffect={{
           rotate: 0,
@@ -63,5 +63,3 @@ const SwiperSlider = ({
     </div>
   );
 };
-
-export default SwiperSlider;
