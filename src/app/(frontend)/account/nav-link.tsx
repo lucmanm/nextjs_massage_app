@@ -1,31 +1,14 @@
 "use client";
 import { buttonVariants } from "@/components/ui/button";
-import { NavProps } from "@/constant/data";
+import { iconComponents, NavProps } from "@/constant/data";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import {
-  CircleDollarSign,
-  CreditCard,
-  Heart,
-  LucideIcon,
-  MapPinned,
-  Star,
-  UserRoundPen,
-} from "lucide-react";
-
-const iconComponents: Record<string, LucideIcon> = {
-  UserRoundPen,
-  CircleDollarSign,
-  MapPinned,
-  Heart,
-  Star,
-  CreditCard,
-};
-
 export default function NavLink({ item }: { item: NavProps }) {
   const pathname = usePathname();
+
+
   const IconComponent = iconComponents[item.icon];
 
   // Determine if the current link is active

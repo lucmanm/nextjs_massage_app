@@ -1,11 +1,17 @@
 import {
   BedDoubleIcon,
   BookCheck,
+  CircleDollarSign,
   Contact2Icon,
+  CreditCard,
+  Heart,
   Home,
   LucideIcon,
   Mail,
-  UserCircle
+  MapPinned,
+  Star,
+  UserCircle,
+  UserRoundPen
 } from "lucide-react";
 
 
@@ -193,6 +199,15 @@ export const galleryItems = [
 
 export const imagesPlaceHolder =
   "https://res.cloudinary.com/dzdcszrob/image/upload/v1733872503/icons/qajzdl5t44y0uvtfuhmz.svg";
+
+export const iconComponents: Record<string, LucideIcon> = {
+  UserRoundPen,
+  CircleDollarSign,
+  MapPinned,
+  Heart,
+  Star,
+  CreditCard,
+};
 
 export interface NavProps {
   title: string;
