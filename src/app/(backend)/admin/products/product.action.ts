@@ -3,7 +3,9 @@
 import { prisma } from "@/lib/db";
 
 export async function getProducts() {
-    const data = await prisma.product.findMany();
+    const data = await prisma.product.findMany({
+        include: { images: true }
+    });
     return data
 }
 

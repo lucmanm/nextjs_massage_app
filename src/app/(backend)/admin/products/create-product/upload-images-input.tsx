@@ -22,7 +22,7 @@ const imageSchema = z.object({
 
 type ImageUploadForm = z.infer<typeof imageSchema>;
 
-export default function UploadSliderImages() {
+export default function UploadImageInput() {
   const [selectedImages, setSelectedImages] = useState<
     { file: File; url: string }[]
   >([]);
@@ -53,20 +53,24 @@ export default function UploadSliderImages() {
   };
 
   return (
-    <div className=" p-4 border w-full rounded-md space-y-4">
-      <h2 className="text-lg font-semibold border px-4 bg-slate-100">Slider Images</h2>
+    <div className="w-full space-y-4 rounded-md border p-4">
+      <h2 className="border bg-slate-100 px-4 text-lg font-semibold">
+        Slider Images
+      </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-
         {/* Image Previews */}
 
         {selectedImages.length > 0 ? (
           <div className="flex gap-4">
             {selectedImages.map((image, index) => (
-              <Card key={index} className="relative aspect-square  h-40 w-40 overflow-hidden object-contain">
+              <Card
+                key={index}
+                className="relative aspect-square h-40 w-40 overflow-hidden object-contain"
+              >
                 <Button
                   type="button"
                   size="icon"
-                  className="absolute right-1 top-1 rounded-full bg-red-500 p-1 text-white size-7"
+                  className="absolute right-1 top-1 size-7 rounded-full bg-red-500 p-1 text-white"
                   onClick={() => removeImage(index)}
                 >
                   <Trash size={16} />
@@ -75,19 +79,16 @@ export default function UploadSliderImages() {
                 <Image
                   src={image.url}
                   alt="Selected"
-                  className="aspect-square  h-40 w-40 rounded  overflow-hidden"
+                  className="aspect-square h-40 w-40 overflow-hidden rounded"
                   width={500}
                   height={500}
                 />
               </Card>
             ))}
           </div>
-        )
-        :
-        (
-          <ImageIcon className="size-40 text-gray-300"/>
-        )
-      }
+        ) : (
+          <ImageIcon className="size-40 text-gray-300" />
+        )}
 
         {/* File Input */}
         <Controller
@@ -120,7 +121,7 @@ export default function UploadSliderImages() {
 
         {/* Submit Button */}
         <Button type="submit" className="w-fit">
-          <Save/>
+          <Save />
           Save
         </Button>
       </form>

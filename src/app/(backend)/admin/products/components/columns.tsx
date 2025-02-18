@@ -1,19 +1,43 @@
 "use client";
 
 import FormatCurrency from "@/lib/format-currency";
-import { Product } from "@prisma/client";
+import { Image as PrismaImage, Product } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 
 import CellAction from "./cell-action";
 import { ImageIcon } from "lucide-react";
+import Image from "next/image";
+import { Fragment } from "react";
 
-export type ProductWithoutTimestamps = Omit<Product, "createdAt" | "updatedAt">;
+export type ProductWithoutTimestamps = Omit<
+  Product,
+  "createdAt" | "updatedAt"
+> & {
+  images: PrismaImage[];
+};
 
 export const columns: ColumnDef<ProductWithoutTimestamps>[] = [
   {
     accessorKey: "image",
     header: () => <div className="text-center">Image</div>,
-    cell: () => <ImageIcon className="size-24 text-blue-600" />,
+    cell: ({ row }) => {
+      const imageUrl = row.original.images[0].url;
+      return (
+        <Fragment>
+          {imageUrl ? (
+            <Image
+              alt="Product Image"
+              src={imageUrl}
+              className="size-24"
+              width={100}
+              height={100}
+            />
+          ) : (
+            <ImageIcon className="size-24 text-blue-600" />
+          )}
+        </Fragment>
+      );
+    },
   },
   {
     accessorKey: "title",
