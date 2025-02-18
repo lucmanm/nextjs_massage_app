@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react";
 
-const Page = () => {
-    // TODO Prodoct View
-  return (
-    <div>
-      Product
-    </div>
-  )
+export async function Page({
+  params,
+}: {
+  params: Promise<{ service: string }>;
+}) {
+  const { service } = await params;
+  return <div>{service}</div>;
 }
 
-export default Page
+export default Page;
